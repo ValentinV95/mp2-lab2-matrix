@@ -50,7 +50,7 @@ TEST(TVector, copied_vector_has_its_own_memory)
 	TVector<int> b = a;
 	b[0] = 3;
 
-	ASSERT_NE(a, b);
+	EXPECT_NE(a, b);
 }
 
 TEST(TVector, can_get_size)
