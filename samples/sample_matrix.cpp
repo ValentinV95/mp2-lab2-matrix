@@ -8,7 +8,7 @@
 #include <stdlib.h>   
 #include <time.h> 
 //---------------------------------------------------------------------------
-#define USE_INT //закоментировать, чтобы использовать double
+#define USE_INT //закомментировать, чтобы использовать double
 
 #ifdef USE_INT
 #define mType int
