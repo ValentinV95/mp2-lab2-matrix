@@ -8,7 +8,7 @@
 #include <stdlib.h>   
 #include <time.h> 
 //---------------------------------------------------------------------------
-#define USE_INT //закоментировать, чтобы использовать double
+#define USE_INT //закомментировать, чтобы использовать double
 
 #ifdef USE_INT
 #define mType int
@@ -52,7 +52,7 @@ void main()
 			srand (time(NULL));
 			for (i = 0; i < n; i++)
 			{
-				for (j = 0; j < n - i; j++)
+				for (j = i; j < n; j++)
 				{
 					a[i][j] =  ((double) rand()/ (double) RAND_MAX) * 99 + 1; 
 					b[i][j] = ((double) rand()/(double)  RAND_MAX) * 99 + 1; 

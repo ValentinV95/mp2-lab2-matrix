@@ -257,8 +257,8 @@ TEST(TVector, cant_add_vectors_with_not_equal_size)
     TVector<int> v(2,1);
 	TVector<int> v1(4);
 
-	v[0] = 1;
-	v[1] = 2;
+	v[1] = 1;
+	v[2] = 2;
 
 	v1[0] = 3;
 	v1[1] = 0;
@@ -294,8 +294,8 @@ TEST(TVector, cant_subtract_vectors_with_not_equal_size)
     TVector<int> v(2,1);
 	TVector<int> v1(4);
 
-	v[0] = 1;
-	v[1] = 2;
+	v[1] = 1;
+	v[2] = 2;
 
 	v1[0] = 3;
 	v1[1] = 0;

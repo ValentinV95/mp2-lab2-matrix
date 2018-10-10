@@ -101,11 +101,11 @@ TVector<ValType>::~TVector()
 template <class ValType> // доступ
 ValType& TVector<ValType>::operator[](int pos)
 {
-	if(pos < 0 || pos >= Size)
+	if(pos < 0 || pos >= Size + StartIndex)
 	{
 		throw("Incorrect index");
 	}
-	return pVector[pos];
+	return pVector[pos - StartIndex];
 } /*-------------------------------------------------------------------------*/
 
 template <class ValType> // сравнение
@@ -242,8 +242,8 @@ TVector<ValType> TVector<ValType>::operator-(const TVector<ValType> &v)const
 {
 	TVector <ValType> p(*this);
 	TVector <ValType> p1(v);
-	p1 = p1*(-1);
-	return p + p1;
+	double f = -1.0;
+	return p + p1*f;
 } /*-------------------------------------------------------------------------*/
 
 template <class ValType> // скалярное произведение
@@ -322,14 +322,9 @@ TMatrix<ValType>::TMatrix(const TMatrix<ValType> &mt) : TVector<TVector<ValType>
   {
 	 Size = mt.GetSize();
 	 StartIndex = 0;
-	for(int i = 0, k = Size; i < Size; i++, k--)
+	for(int i = 0; i < Size; i++)
 	{
-		TVector<ValType> tmp(k,i);
-		pVector[i] = tmp;
-		for(int j = 0; j < k; j++)
-		{
-			pVector[i][j] = mt.pVector[i][j];
-		}
+		pVector[i] = mt.pVector[i];
 	}
   }
 
@@ -383,14 +378,9 @@ TMatrix<ValType>& TMatrix<ValType>::operator=(const TMatrix<ValType> &mt)
 			Size = mt.Size;
 			pVector = new TVector<ValType>[Size];
 			StartIndex = 0;
-			for(int i = 0, k = Size; i < Size; i++, k--)
+			for(int i = 0; i < Size; i++)
 			{
-				TVector<ValType> tmp(k,i);
-				pVector[i] = tmp;
-				for(int j = 0; j < k; j++)
-				{
-					pVector[i][j] = mt.pVector[i][j];
-				}
+				pVector[i] = mt.pVector[i];
 			}
 		}
 	}
@@ -413,9 +403,9 @@ TMatrix<ValType> TMatrix<ValType>::operator-(const TMatrix<ValType> &mt)
 	TVector<TVector<ValType>> vv1(*this);
 	TVector<TVector<ValType>> vv2(mt);
 	TMatrix<ValType> m(Size);
-	for(int i = 0; i < vv2.GetSize(); i++)
+	for ( int i = 0 ; i <vv2. GetSize (); i ++)
 	{
-		vv2[i] = vv2[i]*(-1);
+		vv2 [i] = vv2 [i] * (- 1 );
 	}
 	m = vv1 + vv2;
 	return m;
