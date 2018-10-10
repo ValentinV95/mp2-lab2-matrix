@@ -42,7 +42,7 @@ public:
   // векторные операции
   TVector  operator+(const TVector &v) const;     // сложение
   TVector  operator-(const TVector &v) const;     // вычитание
-  ValType  operator*(const TVector &v) const;     // скалярное произведение
+  ValType  operator*(const TVector &v) const;    // скалярное произведение
 
   // ввод-вывод
   friend istream& operator>>(istream &in, TVector &v)
@@ -240,10 +240,13 @@ TVector<ValType> TVector<ValType>::operator+(const TVector<ValType> &v)const
 template <class ValType> // вычитание
 TVector<ValType> TVector<ValType>::operator-(const TVector<ValType> &v)const
 {
-	TVector <ValType> p(*this);
-	TVector <ValType> p1(v);
-	double f = -1.0;
-	return p + p1*f;
+	TVector <ValType> p(v);
+	for(int i = 0; i < v.GetSize(); i++)
+	{
+		p.pVector[i] = p.pVector[i] * (-1);
+	}
+	return *this + p;
+
 } /*-------------------------------------------------------------------------*/
 
 template <class ValType> // скалярное произведение
@@ -403,11 +406,7 @@ TMatrix<ValType> TMatrix<ValType>::operator-(const TMatrix<ValType> &mt)
 	TVector<TVector<ValType>> vv1(*this);
 	TVector<TVector<ValType>> vv2(mt);
 	TMatrix<ValType> m(Size);
-	for ( int i = 0 ; i <vv2. GetSize (); i ++)
-	{
-		vv2 [i] = vv2 [i] * (- 1 );
-	}
-	m = vv1 + vv2;
+	m = vv1 - vv2;
 	return m;
 } /*-------------------------------------------------------------------------*/
 
