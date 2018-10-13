@@ -11,70 +11,21 @@
 
 void main()
 {
+	TMatrix<int> a(5), b(5), c(5);
+	int i, j;
+
 	setlocale(LC_ALL, "Russian");
-
-	int n;
-	cout << "Порядок матрицы: ";
-	cin >> n;
-
-	TMatrix<int> a(n), b(n);
-
-	cout << "Введите первую матрицу:" << endl;
-	cin >> a;
-
-	cout << "Введите вторую матрицу:" << endl;
-	cin >> b;
-
-	int key = 0;
-	do
-	{
-		cout << "Выберите операцию над матрицами:" << endl;
-		cout << "1) a + b" << endl;
-		cout << "2) a - b" << endl;
-		cout << "3) b - a" << endl;
-		int input;
-		cin >> input;
-
-		switch (input)
+	cout << "Тестирование программ поддержки представления треугольных матриц"
+		<< endl;
+	for (i = 0; i < 5; i++)
+		for (j = i; j < 5; j++)
 		{
-		case 1:
-			cout << a + b;
-			key++;
-			break;
-		case 2:
-			cout << a - b;
-			key++;
-			break;
-		case 3:
-			cout << b - a;
-			key++;
-			break;
-		default:
-			cout << "Вы допустили ошибку. Можно использовать только 1, 2, 3" << endl;
+			a[i][j] = i * 10 + j;
+			b[i][j] = (i * 10 + j) * 100;
 		}
-
-		int key1 = 0;
-		do
-		{
-			cout << "Хотите ли вы выбрать другую операцию? (1 - да, 2 - нет)" << endl;
-			int input1;
-			cin >> input1;
-
-			switch (input1)
-			{
-			case 1:
-				key = 0;
-				key1++;
-				break;
-			case 2:
-				key1++;
-				break;
-			default:
-				cout << "Вы допустили ошибку. Можно использовать только 1, 2" << endl;
-			}
-		} 
-		while (!key1);
-	} 
-	while (!key);
+	c = a + b;
+	cout << "Matrix a = " << endl << a << endl;
+	cout << "Matrix b = " << endl << b << endl;
+	cout << "Matrix c = a + b" << endl << c << endl;
 }
 //---------------------------------------------------------------------------

@@ -242,7 +242,7 @@ TEST(TVector, can_add_vectors_with_equal_size)
 
 TEST(TVector, cant_add_vectors_with_not_equal_size)
 {
-	TVector<int> a(2, 1);
+	TVector<int> a(2);
 	a[0] = 1;
 	a[1] = 3;
 
@@ -251,12 +251,7 @@ TEST(TVector, cant_add_vectors_with_not_equal_size)
 	b[1] = 9;
 	b[2] = 5;
 
-	TVector<int>c(3);
-	c[0] = 3;
-	c[1] = 10;
-	c[2] = 8;
-
-	EXPECT_EQ(a + b, c);
+	ASSERT_ANY_THROW(a + b);
 }
 
 TEST(TVector, can_subtract_vectors_with_equal_size)
@@ -278,7 +273,7 @@ TEST(TVector, can_subtract_vectors_with_equal_size)
 
 TEST(TVector, cant_subtract_vectors_with_not_equal_size)
 {
-	TVector<int> a(2, 1);
+	TVector<int> a(2);
 	a[0] = 1;
 	a[1] = 3;
 
@@ -287,12 +282,7 @@ TEST(TVector, cant_subtract_vectors_with_not_equal_size)
 	b[1] = 9;
 	b[2] = 5;
 
-	TVector<int> c(3);
-	c[0] = -3;
-	c[1] = -8;
-	c[2] = -2;
-
-	EXPECT_EQ(a - b, c);
+	ASSERT_ANY_THROW(a - b);
 }
 
 TEST(TVector, can_multiply_vectors_with_equal_size)
@@ -310,7 +300,7 @@ TEST(TVector, can_multiply_vectors_with_equal_size)
 
 TEST(TVector, cant_multiply_vectors_with_not_equal_size)
 {
-	TVector<int> a(2, 1);
+	TVector<int> a(2);
 	a[0] = 1;
 	a[1] = 3;
 
@@ -319,6 +309,6 @@ TEST(TVector, cant_multiply_vectors_with_not_equal_size)
 	b[1] = 9;
 	b[2] = 4;
 
-	EXPECT_EQ(a * b, 21);
+	ASSERT_ANY_THROW(a * b);
 }
 
