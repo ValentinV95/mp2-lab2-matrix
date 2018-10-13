@@ -268,7 +268,7 @@ ValType TVector<ValType>::operator*(const TVector<ValType> &v)const
 	{
 		for(int i = Size - 1; i >=0; i--)
 		{
-			ans += pVector[i - v.StartIndex + StartIndex] * v.pVector[i];
+			ans += v.pVector[i - v.StartIndex + StartIndex] * pVector[i];
 		}
 	}
 	return ans;
