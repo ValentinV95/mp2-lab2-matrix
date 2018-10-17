@@ -273,19 +273,20 @@ TEST(TVector, can_subtract_vectors_with_equal_size)
     TVector<int> v(4);
 	for(int i = 0; i < v.GetSize(); i++)
 	{
-		v[i] = i * 2;
+		v[i] = (i + 1) * 2;
 	}
-	TVector<int> v1(4);
-	for(int i = 0; i < v1.GetSize(); i++)
+	TVector<int> v1(3,1);
+	for(int i = 1; i <= v1.GetSize(); i++)
 	{
 		v1[i] = i * 4 + i * 2;
 	}
 	TVector<int> v2(4);
-	for(int i = 0; i < v2.GetSize(); i++)
-	{
-		v2[i] = i * 4;
-	}
 
+	v2[0] = -2;
+	v2[1] = 2;
+	v2[2] = 6;
+	v2[3] = 10;
+ 
 	EXPECT_EQ(v1 - v, v2);
 }
 
