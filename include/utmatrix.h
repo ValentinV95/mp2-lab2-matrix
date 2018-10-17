@@ -66,7 +66,7 @@ public:
 template <class ValType>
 TVector<ValType>::TVector(int s, int si)
 {
-	if (s <= 0 || s > MAX_VECTOR_SIZE || si < 0 || si > MAX_VECTOR_SIZE || (s + si) > MAX_VECTOR_SIZE)
+	if (s <= 0 ||  si < 0 ||  (s + si) > MAX_VECTOR_SIZE)
 	{
 		throw "Incorrect length or index";
 	}
@@ -139,7 +139,6 @@ TVector<ValType>& TVector<ValType>::operator=(const TVector &v)
 		if (Size != v.Size)
 		{
 			Size = v.Size;
-			StartIndex = v.StartIndex;
 			delete[]pVector;
 			pVector = NULL;
 			pVector = new ValType[Size];
@@ -224,12 +223,28 @@ TVector<ValType> TVector<ValType>::operator+(const TVector<ValType> &v) const
 template <class ValType> // вычитание
 TVector<ValType> TVector<ValType>::operator-(const TVector<ValType> &v) const
 {
-	TVector<ValType> temp(v);
-	for (int i = 0; i < v.GetSize(); i++)
+	if ((Size + StartIndex) != (v.Size + v.StartIndex))
 	{
-		temp.pVector[i] = temp.pVector[i] * (-1);
+		throw "Different length";
 	}
-	return *this + temp;
+	if (Size > v.Size)
+	{
+		TVector<ValType> temp(*this);
+		for (int i = v.Size - 1; i >= 0; i--)
+		{
+			temp.pVector[v.StartIndex - StartIndex + i] = temp.pVector[v.StartIndex - StartIndex + i] - v.pVector[i];
+		}
+		return temp;
+	}
+	else
+	{
+		TVector<ValType> temp(v);
+		for (int i = Size - 1; i >= 0; i--)
+		{
+			temp.pVector[StartIndex - v.StartIndex + i] = temp.pVector[StartIndex - v.StartIndex + i] * (-1) + pVector[i];
+		}
+		return temp;
+	}
 }
 
 template <class ValType> // скалярное произведение
