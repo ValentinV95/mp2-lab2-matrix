@@ -241,7 +241,7 @@ TVector<ValType> TVector<ValType>::operator-(const TVector<ValType> &v) const
 		TVector<ValType> temp(v);
 		for (int i = Size - 1; i >= 0; i--)
 		{
-			temp.pVector[StartIndex - v.StartIndex + i] = temp.pVector[StartIndex - v.StartIndex + i] * (-1) + pVector[i];
+			temp.pVector[StartIndex - v.StartIndex + i] = pVector[i] - temp.pVector[StartIndex - v.StartIndex + i];
 		}
 		return temp;
 	}
