@@ -74,7 +74,7 @@ struct incorrect_value {
 template <class ValType>
 TVector<ValType>::TVector(int s, int si)
 {
-	if (s < 0) throw (incorrect_value(1));
+	if (s <= 0) throw (incorrect_value(1));
 	else if (s > MAX_VECTOR_SIZE) throw (incorrect_value(2));
 	else if (si < 0) throw (incorrect_value(5));
 
