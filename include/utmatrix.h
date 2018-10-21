@@ -96,9 +96,9 @@ bool TVector<ValType>::operator==(const TVector &v) const
 	int flag = 0;
 	if (Size == v.Size) {
 		for (int i = 0; i < Size; i++) {
-			if (pVector[i] == v.pVector[i]) {
+			if (pVector[i] == v.pVector[i]) 
 				flag = 1;
-			}
+			
 			else {
 				flag = 0;
 				break;
