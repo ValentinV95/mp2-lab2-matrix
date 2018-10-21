@@ -5,9 +5,6 @@
 //
 // Верхнетреугольная матрица - реализация на основе шаблона вектора
 
-//TO DO:
-//		 1) write compare for matrix
-
 #ifndef __TMATRIX_H__
 #define __TMATRIX_H__
 
@@ -85,10 +82,6 @@ TVector<ValType>::TVector(int s, int si)
 	pVector = new ValType[s];
 	StartIndex = si;
 
-	for (int i = 0; i < Size; i++) {
-		pVector[i] = 0;
-	}
-	
 } /*-------------------------------------------------------------------------*/
 
 template <class ValType> //конструктор копирования
