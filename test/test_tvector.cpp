@@ -312,3 +312,44 @@ TEST(TVector, cant_multiply_vectors_with_not_equal_size)
 	ASSERT_ANY_THROW(a * b);
 }
 
+TEST(TVector, can_subtract_vectors_with_not_equal_start_index_and_a_size_less_b_size)
+{
+	TVector<int> a(2, 2); // 0 0 1 3
+	a[2] = 1;
+	a[3] = 3;
+
+	TVector<int> b(4); // 3 9 5 8
+	b[0] = 3;
+	b[1] = 9;
+	b[2] = 5;
+	b[3] = 8;
+
+	TVector<int>c(4); // -3 -9 -4 -5
+	c[0] = -3;
+	c[1] = -9;
+	c[2] = -4;
+	c[3] = -5;
+
+	EXPECT_EQ(a - b, c);
+}
+
+TEST(TVector, can_subtract_vectors_with_not_equal_start_index_and_a_size_greater_b_size)
+{
+	TVector<int> a(2, 2); // 0 0 1 3 
+	a[2] = 1;
+	a[3] = 3;
+
+	TVector<int> b(4); // 3 9 5 8
+	b[0] = 3;
+	b[1] = 9;
+	b[2] = 5;
+	b[3] = 8;
+
+	TVector<int>c(4); // 3 9 4 5
+	c[0] = 3;
+	c[1] = 9;
+	c[2] = 4;
+	c[3] = 5;
+
+	EXPECT_EQ(b - a, c); 
+}
