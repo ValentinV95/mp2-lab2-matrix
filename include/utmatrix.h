@@ -47,14 +47,16 @@ public:
   // ввод-вывод
   friend istream& operator>>(istream &in, TVector &v)
   {
-    for (int i = 0; i < v.Size; i++)
-      in >> v.pVector[i];
+    for (int i = 0; i < v.Size-v.StartIndex; i++)
+      in >> v[i]>> " ";
     return in;
   }
   friend ostream& operator<<(ostream &out, const TVector &v)
   {
-    for (int i = 0; i < v.Size; i++)
-      out << v.pVector[i] << ' ';
+    for (int i = 0; i < v.StartIndex; i++)
+      out << 0 << " ";
+	for (int i = 0; i < v.Size-v.StartIndex; i++)
+      out << v.pVector[i] << " ";
     return out;
   }
 };
@@ -62,7 +64,7 @@ public:
 template <class ValType>
 TVector<ValType>::TVector(int s, int si)
 {
-	if ((s<1)||(si<0)||(s>MAX_VECTOR_SIZE)||(s<si))
+	if ((s<1)||(si<0)||(s>MAX_VECTOR_SIZE)||(s<=si))
 		throw"incorrect parameters in the vector constructor with the parameter";
 	Size = s;
 	StartIndex = si;
@@ -215,10 +217,10 @@ TVector<ValType> TVector<ValType>::operator-(const TVector<ValType> &v)
 	}
 	else
 	{
-		for (int i = 0; i < v.Size-MinSI; i++)
-			Res.pVector[i] =v.pVector[i];
-		for (int i = StartIndex-MinSI; i < Size-MinSI; i++)
-			Res.pVector[i] =Res.pVector[i] - pVector[i];
+		for (int i = 0; i < StartIndex; i++)
+			Res.pVector[i] =v.pVector[i]*(-1);
+		for (int i = 0; i < Size-StartIndex; i++)
+			Res.pVector[i+StartIndex] =pVector[i]-v.pVector[i];
 	}
 
 	
@@ -243,7 +245,7 @@ ValType TVector<ValType>::operator*(const TVector<ValType> &v)
 		for (int i = 0; i < Size - MaxSI; i++)
 			Res+= pVector[i] * v.pVector[i+MaxSI-v.StartIndex]; 
 	else
-		for (int i = 0; i < Size - MaxSI; i++)
+		for (int i = 0; i < v.Size - MaxSI; i++)
 			Res+= pVector[i+MaxSI-v.StartIndex] * v.pVector[i]; 
 
 	return Res;
