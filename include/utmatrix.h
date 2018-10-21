@@ -156,10 +156,14 @@ TVector<ValType>& TVector<ValType>::operator=(const TVector &v)
 template <class ValType> // прибавить скаляр
 TVector<ValType> TVector<ValType>::operator+(const ValType &val)
 {
-	TVector<ValType> res = (*this);
+	TVector<ValType> res(Size + StartIndex);
 
-	for (int i = 0; i < Size; i++) {
-		res.pVector[i] += val; 
+	for (int i = 0; i < StartIndex; i++) {
+		res.pVector[i] = val; 
+	}
+
+	for (int i = StartIndex; i < Size + StartIndex; i++) {
+		res.pVector[i] = (*this).pVector[i - StartIndex] + val;
 	}
 
 	return res;
