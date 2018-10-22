@@ -84,18 +84,18 @@ TEST(TVector, can_assign_vector_to_itself)
 {
 	TVector<int> v(2);
 	v[0] = 1; v[1] = 2;
+	TVector<int> v1(v);
 	v = v;
-	EXPECT_EQ(1, v[0]);
-	EXPECT_EQ(2, v[1]);
+	EXPECT_EQ(v, v1);
 }
 
 TEST(TVector, can_assign_vectors_of_equal_size)
 {
 	TVector<int> v1(2), v2(2);
-	v1[0] = 1; v2[1] = 2;
+	v1[0] = 1; v1[1] = 2; v2[0] = 2; v2[1] = 3;
 	v1 = v2;
-	EXPECT_EQ(0, v1[0]);
-	EXPECT_EQ(2, v1[1]);
+	EXPECT_EQ(2, v1[0]);
+	EXPECT_EQ(3, v1[1]);
 }
 
 TEST(TVector, assign_operator_change_vector_size)
@@ -142,16 +142,20 @@ TEST(TVector, vectors_with_different_size_are_not_equal)
 
 TEST(TVector, can_add_scalar_to_vector)
 {
-	TVector<int> v1(5);
-	TVector<int> v2 = v1 + 5;
+	TVector<int> v1(2);
+	v1[0] = 0; v1[1] = 0;
+	TVector<int> v2(2);
+	v2 = v1 + 5;
 	
 	EXPECT_EQ(5, v2[1]);
 }
 
 TEST(TVector, can_subtract_scalar_from_vector)
 {
-	TVector<int> v1(5);
-	TVector<int> v2 = v1 - 5;
+	TVector<int> v1(2);
+	v1[0] = 0; v1[1] = 0;
+	TVector<int> v2(2);
+	v2 = v1 - 5;
 
 	EXPECT_EQ(-5, v2[1]);
 }
