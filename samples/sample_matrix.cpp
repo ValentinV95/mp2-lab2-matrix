@@ -11,21 +11,36 @@
 
 void main()
 {
-  TMatrix<int> a(5), b(5), c(5);
-  int i, j;
-
-  setlocale(LC_ALL, "Russian");
-  cout << "Тестирование программ поддержки представления треугольных матриц"
+	int n, t;
+	setlocale(LC_ALL, "Russian");
+	cout << "Тестирование программ поддержки представления треугольных матриц"
     << endl;
-  for (i = 0; i < 5; i++)
-    for (j = i; j < 5; j++ )
-    {
-      a[i][j] =  i * 10 + j;
-      b[i][j] = (i * 10 + j) * 100;
-    }
-  c = a + b;
-  cout << "Matrix a = " << endl << a << endl;
-  cout << "Matrix b = " << endl << b << endl;
-  cout << "Matrix c = a + b" << endl << c << endl;
+
+	cout << "Введите размер матриц" << endl;
+	cin >> n;
+
+	TMatrix<int> a(n), b(n), c(n);
+
+	cout << "Введите матрицe a" << endl;
+	cin >> a;
+
+	cout << "Введите матрицe b" << endl;
+	cin >> b;
+
+	cout << "Выберите операцию:" << endl << "1)+" << endl<< "2)-" << endl;
+	cin >> t;
+	if(t == 1) {
+		c = a + b;
+
+		cout << "Matrix a = " << endl << a << endl;
+		cout << "Matrix b = " << endl << b << endl;
+		cout << "Matrix c = a + b" << endl << c << endl;
+	} else  {
+		c = a - b;
+		
+		cout << "Matrix a = " << endl << a << endl;
+		cout << "Matrix b = " << endl << b << endl;
+		cout << "Matrix c = a - b" << endl << c << endl;
+	}   
 }
 //---------------------------------------------------------------------------
