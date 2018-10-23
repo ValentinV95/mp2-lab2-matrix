@@ -49,7 +49,7 @@ void main()
 	cout << "Matrix b = " << endl << b << endl;
 
 	cout << "Выберите операцию, которую хотите произвести над матрицами:" << endl;
-	cout << "Сложение матриц - введите 1" << endl << "Вычитание матриц - введите 2" << endl;
+	cout << "Сложение матриц - введите 1" << endl << "Вычитание матриц (A-B) - введите 2" << endl << "Вычитание матриц (B-A)- введите 3" << endl;
 	cin >> vv2;
 	if (vv2 == 1) {
 		c = a + b;
@@ -58,6 +58,10 @@ void main()
 	if (vv2 == 2) {
 		c = a - b;
 		cout << "Matrix c = a - b" << endl << c << endl;
+	}
+	if (vv2 == 3) {
+		c = b - a;
+		cout << "Matrix c = b - a" << endl << c << endl;
 	}
 
 }
