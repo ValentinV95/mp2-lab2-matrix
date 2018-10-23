@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include "utmatrix.h"
+#include <stdlib.h>
 //---------------------------------------------------------------------------
 
 void main()
@@ -39,7 +40,7 @@ void main()
 				b[i][j] = rand() % 1001;
 			}
 
-	cout << "Сложение матриц-введите 1" << endl << "Вычитание матриц-введите 2" << endl;
+	cout << "Сложение матриц-введите 1" << endl << "Вычитание матриц (a-b)-введите 2" << endl << "Вычитание матриц (b-a)-введите 3" << endl;
 	cin >> tmp2;
 	if (tmp2 == 1) {
 		c = a + b;
@@ -52,6 +53,12 @@ void main()
 		cout << "Matrix a = " << endl << a << endl;
 		cout << "Matrix b = " << endl << b << endl;
 		cout << "Matrix c = a - b" << endl << c << endl;
+	}
+	if (tmp2 == 3) {
+		c = b - a;
+		cout << "Matrix a = " << endl << a << endl;
+		cout << "Matrix b = " << endl << b << endl;
+		cout << "Matrix c = b - a" << endl << c << endl;
 	}
 }
 //---------------------------------------------------------------------------
