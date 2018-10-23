@@ -11,21 +11,51 @@
 
 void main()
 {
-  TMatrix<int> a(5), b(5), c(5);
-  int i, j;
+	int n;
 
-  setlocale(LC_ALL, "Russian");
-  cout << "Тестирование программ поддержки представления треугольных матриц"
-    << endl;
-  for (i = 0; i < 5; i++)
-    for (j = i; j < 5; j++ )
-    {
-      a[i][j] =  i * 10 + j;
-      b[i][j] = (i * 10 + j) * 100;
-    }
-  c = a + b;
-  cout << "Matrix a = " << endl << a << endl;
-  cout << "Matrix b = " << endl << b << endl;
-  cout << "Matrix c = a + b" << endl << c << endl;
+    TMatrix<int> a(n), b(n), c(n), d(n);
+
+    setlocale(LC_ALL, "Russian");
+    cout << "Тестирование программ поддержки представления треугольных матриц" << endl;
+
+	cout << "Введите размер матриц" << endl;
+	cin >> n;
+	cout << "Заполните поля матрицы А" << endl;
+	cin >> a;
+	cout << endl;
+	cout << "Заполните поля матрицы В" << endl;
+	cin >> b;
+	cout << endl;
+    
+	cout << "1 - сумма матриц, 2 - разность матриц, 3 - присваивание, 4 - сравнение матриц" << endl;
+	int temp;
+	cin >> temp;
+	cout << endl;
+	if (temp == 1)
+	{
+		c = a + b;
+		cout << "Matrix c = a + b" << endl << c << endl;
+	}
+	if (temp == 2)
+	{
+		d = a - b;
+		cout << "Matrix d = a - b" << endl << d << endl;
+	}
+	if (temp == 3)
+	{
+		a = b;
+		cout << "Matrix a = b" << endl << a << endl;
+	}
+	if (temp == 4)
+	{
+		if (a != b)
+		{
+			cout << "Matrix a != b" << endl << d << endl;
+		}
+		else
+		{
+			cout << "Matrix a == b" << endl << d << endl;
+		}
+	}
 }
 //---------------------------------------------------------------------------
