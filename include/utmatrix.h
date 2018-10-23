@@ -210,12 +210,28 @@ TVector<ValType> TVector<ValType>::operator+(const TVector<ValType> &v)
 template <class ValType> // вычитание
 TVector<ValType> TVector<ValType>::operator-(const TVector<ValType> &v)
 {
-	if ((*this).Size != v.Size) throw ("incorrect_value(4)");
-	TVector<ValType> res = (*this);
-	for (int i = 0; i < Size; i++) {
-		res.pVector[i] = (*this).pVector[i] - v.pVector[i];
-	}
-	return res;
+	{
+		if (Size + StartIndex == v.Size + v.StartIndex)
+		{
+			if (StartIndex < v.StartIndex)
+			{
+				TVector<ValType> Rez(*this);
+				for (int i = v.Size - 1; i >= 0; i--)
+					Rez.pVector[i + v.StartIndex - StartIndex] = Rez.pVector[i + v.StartIndex - StartIndex] - v.pVector[i];
+				return Rez;
+			}
+			else
+			{
+				TVector<ValType> Rez(v);
+				for (int i = Size - 1; i >= 0; i--)
+					Rez.pVector[i + StartIndex - v.StartIndex] = pVector[i] - Rez.pVector[i + StartIndex - v.StartIndex];
+				for (int i = 0; i < v.Size - Size; i++)
+					Rez.pVector[i] = Rez.pVector[i] - Rez.pVector[i] - Rez.pVector[i];
+				return Rez;
+			}
+		}
+		else throw ("Non equal vectors");
+	} /*-------------------------------------------------------------------------*/
 
 
 
