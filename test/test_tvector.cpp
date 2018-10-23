@@ -45,10 +45,11 @@ TEST(TVector, copied_vector_has_its_own_memory)
 	for (int i = 0; i < 4; i++) {
 		a[i] = 1;
 	}
-	TVector <int> b = a;
-	for (int i = 0; i < 4; i++) {
-		a[i] = 2;
+	TVector <int> b (5);
+	for (int i = 0; i < 5; i++) {
+		b[i] = 2;
 	}
+	a = b;
 	EXPECT_EQ(b, a);
 }
 
@@ -117,7 +118,7 @@ TEST(TVector, assign_operator_change_vector_size)
 			b[i] = 2;
 		}
 	a = b;
-	EXPECT_EQ(4, a.GetSize());
+	EXPECT_EQ(b.GetSize(), a.GetSize());
 }
 
 TEST(TVector, can_assign_vectors_of_different_size)
@@ -277,9 +278,9 @@ TEST(TVector, can_multiply_vectors_with_equal_size)
 	}
 	TVector <int> b(4);
 	for (int i = 0; i < 4; i++) {
-		b[i] = 2;
+		b[i] = 0;
 	}
-	EXPECT_EQ(8, a * b);
+	EXPECT_EQ(0, a * b);
 }
 
 TEST(TVector, cant_multiply_vectors_with_not_equal_size)

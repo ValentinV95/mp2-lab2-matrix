@@ -38,12 +38,16 @@ TEST(TMatrix, copied_matrix_is_equal_to_source_one)
 TEST(TMatrix, copied_matrix_has_its_own_memory)
 {
 	TMatrix <int> a(4);
-	TMatrix <int> b(4);
+	TMatrix <int> b(5);
 	for (int i = 0; i < 4; i++)
-		for (int i = 0; j < 4; j++) {
+		for (int j = i; j < 4; j++) {
 			a[i][j] = 1;
+		}
+	for (int i = 0; i < 5; i++)
+		for (int j = i; j < 5; j++) {
 			b[i][j] = 2;
 		}
+	b = a;
 	EXPECT_EQ(b, a);
 }
 
@@ -107,7 +111,7 @@ TEST(TMatrix, assign_operator_change_matrix_size)
 			b[i][j] = 2;
 		}
 	a = b;
-	EXPECT_EQ(4, a.GetSize());
+	EXPECT_EQ(b.GetSize(), a.GetSize());
 }
 
 TEST(TMatrix, can_assign_matrices_of_different_size)
