@@ -11,21 +11,27 @@
 
 void main()
 {
-  TMatrix<int> a(5), b(5), c(5);
-  int i, j;
+	int n, k;
+	setlocale(LC_ALL, "Russian");
+	cout << "Тестирование программ поддержки представления треугольных матриц"
+		<< endl;
+	cout << "Введите порядок матриц: " << endl;
+	cin >> n;
+	TMatrix<int> a(n), b(n);
+	cout << "Введите 1-ю матрицу" << endl;
+	cin >> a;
+	cout << "Введите 2-ю матрицу" << endl;
+	cin >> b;
+	cout << "1) 1 + 2" << endl;
+	cout << "2) 1 - 2" << endl;
+	cin >> k;
+	if (k == 1)
+		cout << a + b << endl;
+	else
 
-  setlocale(LC_ALL, "Russian");
-  cout << "Тестирование программ поддержки представления треугольных матриц"
-    << endl;
-  for (i = 0; i < 5; i++)
-    for (j = i; j < 5; j++ )
-    {
-      a[i][j] =  i * 10 + j;
-      b[i][j] = (i * 10 + j) * 100;
-    }
-  c = a + b;
-  cout << "Matrix a = " << endl << a << endl;
-  cout << "Matrix b = " << endl << b << endl;
-  cout << "Matrix c = a + b" << endl << c << endl;
+		if (k == 2)
+			cout << a - b << endl;
+		else
+			cout << "Операции под таким номером не существует" << endl;
 }
 //---------------------------------------------------------------------------
