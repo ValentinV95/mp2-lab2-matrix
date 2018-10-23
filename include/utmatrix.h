@@ -45,22 +45,19 @@ public:
   ValType  operator*(const TVector &v);     // скалярное произведение
 
   // ввод-вывод
-  friend istream& operator>>(istream &in, TVector &v)
-  {
-    for (int i = 0; i < v.Size-v.StartIndex; i++)
-      in >> v[i]>> " ";
-    return in;
-  }
-  friend ostream& operator<<(ostream &out, const TVector &v)
-  {
-    for (int i = 0; i < v.StartIndex; i++)
-      out << 0 << " ";
-	for (int i = 0; i < v.Size-v.StartIndex; i++)
-      out << v.pVector[i] << " ";
-    return out;
-  }
-};
-
+   friend istream& operator>>(istream &in, TVector &v)
+   {
+     for (int i = 0; i < v.Size-v.StartIndex; i++)
+       in >> v.pVector[i];
+     return in;
+   }
+   friend ostream& operator<<(ostream &out, const TVector &v)
+   {
+     for (int i = 0; i < v.Size-v.StartIndex; i++)
+       out << v.pVector[i] << ' ';
+     return out;
+   }
+ };
 template <class ValType>
 TVector<ValType>::TVector(int s, int si)
 {
