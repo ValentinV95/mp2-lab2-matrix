@@ -215,19 +215,21 @@ TVector<ValType> TVector<ValType>::operator-(const TVector<ValType> &v)
 		{
 			if (StartIndex < v.StartIndex)
 			{
-				TVector<ValType> Rez(*this);
+				TVector<ValType> sub(Size,StartIndex);
+				sub = *this;
 				for (int i = v.Size - 1; i >= 0; i--)
-					Rez.pVector[i + v.StartIndex - StartIndex] = Rez.pVector[i + v.StartIndex - StartIndex] - v.pVector[i];
-				return Rez;
+					sub.pVector[i + v.StartIndex - StartIndex] =sub.pVector[i + v.StartIndex - StartIndex] - v.pVector[i];
+				return sub;
 			}
 			else
 			{
-				TVector<ValType> Rez(v);
+				TVector<ValType> sub(v.Size,v.StartIndex);
+				sub = v;
 				for (int i = Size - 1; i >= 0; i--)
-					Rez.pVector[i + StartIndex - v.StartIndex] = pVector[i] - Rez.pVector[i + StartIndex - v.StartIndex];
+					sub.pVector[i + StartIndex - v.StartIndex] = pVector[i] - sub.pVector[i + StartIndex - v.StartIndex];
 				for (int i = 0; i < v.Size - Size; i++)
-					Rez.pVector[i] = Rez.pVector[i] - Rez.pVector[i] - Rez.pVector[i];
-				return Rez;
+					sub.pVector[i] = sub.pVector[i] - sub.pVector[i] -sub.pVector[i];
+				return sub;
 			}
 		}
 		else throw ("Non equal vectors");
