@@ -44,6 +44,8 @@ public:
   TVector  operator-(const TVector &v) const;     // вычитание
   ValType  operator*(const TVector &v) const;     // скалярное произведение
 
+  TVector operator-() const;
+
   // ввод-вывод
   friend istream& operator>>(istream &in, TVector &v)
   {
@@ -193,6 +195,18 @@ TVector<ValType> TVector<ValType>::operator*(const ValType &val) const
 	return temp;
 }
 
+template <class ValType>
+TVector<ValType> TVector<ValType>::operator-() const
+{
+	TVector<ValType> temp(*this);
+	for (int i = 0; i < Size; i++)
+	{
+		ValType a = temp.pVector[i];
+		temp.pVector[i] = -a;
+	}
+	return temp;
+}
+
 template <class ValType> // сложение
 TVector<ValType> TVector<ValType>::operator+(const TVector<ValType> &v) const
 {
@@ -245,11 +259,7 @@ TVector<ValType> TVector<ValType>::operator-(const TVector<ValType> &v) const
 		}
 		for (int i = 0; i < StartIndex - v.StartIndex; i++)
 		{
-			temp.pVector[i] = 0;
-		}
-		for (int i = 0; i < StartIndex - v.StartIndex; i++)
-		{
-			temp.pVector[i] = temp.pVector[i] - v.pVector[i];
+			temp.pVector[i] = -temp.pVector[i];
 		}
 		return temp;
 	}
