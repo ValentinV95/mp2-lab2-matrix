@@ -21,10 +21,10 @@ void main()
 
 	TMatrix<int> a(n), b(n), c(n);
 
-	cout << "Введите матрицe a" << endl;
+	cout << "Введите матрицу a" << endl;
 	cin >> a;
 
-	cout << "Введите матрицe b" << endl;
+	cout << "Введите матрицу b" << endl;
 	cin >> b;
 
 	cout << "Выберите операцию:" << endl << "1)+" << endl<< "2)-" << endl;
