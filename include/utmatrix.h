@@ -91,7 +91,7 @@ template <class ValType> // доступ
 ValType& TVector<ValType>::operator[](int pos)
 {
 	
-	if (pos >= StartIndex || pos > MAX_VECTOR_SIZE) {
+	if (pos >= StartIndex && pos < Size + StartIndex) {
 		return pVector[pos - StartIndex];
 	} else {throw ("Неверный индекс"); }
 	
@@ -223,7 +223,7 @@ TVector<ValType> TVector<ValType>::operator-(const TVector<ValType> &v)
 			a.pVector[i]= a.pVector[i] -v.pVector[i];
 		}
 		for(int i = v.Size - 1; i >=0; i--)	{
-			a.pVector[i + v.StartIndex - StartIndex] = a.pVector[i + v.StartIndex - StartIndex] - v.pVector[i];
+			a.pVector[i - v.StartIndex + StartIndex] = pVector[i] - v.pVector[i - v.StartIndex + StartIndex];
 		}
 
 		return a;
