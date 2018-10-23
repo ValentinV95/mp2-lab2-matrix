@@ -172,7 +172,7 @@ TVector<ValType> TVector<ValType>::operator+(const ValType &val)
 	}
 	for (int i = StartIndex;i < a.Size;i++)
 	{
-		a.pVector[i] += pVector[i - StartIndex];
+		a.pVector[i] = pVector[i - StartIndex] + a.pVector[i];
 	}
 	return a;		
 } 
@@ -244,9 +244,14 @@ TVector<ValType> TVector<ValType>::operator-(const TVector<ValType> &v)
 		if (Size < v.Size)
 		{
 			TVector <ValType> a(v);
+			TVector <ValType> b(v);
+			for (int i = 0;i < b.Size;i++)
+			{
+				b.pVector[i] = (ValType)0;
+			}
 			for (int i = 0;i < StartIndex - v.StartIndex;i++)
 			{
-				a.pVector[i] = a.pVector[i] - a.pVector[i] - a.pVector[i];
+				a.pVector[i] = b.pVector[i] - a.pVector[i];
 			}
 			for (int i = 0;i < Size;i++)
 			{

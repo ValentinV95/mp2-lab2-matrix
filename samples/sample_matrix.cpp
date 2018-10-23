@@ -7,25 +7,70 @@
 
 #include <iostream>
 #include "utmatrix.h"
-//---------------------------------------------------------------------------
 
 void main()
 {
-  TMatrix<int> a(5), b(5), c(5);
-  int i, j;
-
-  setlocale(LC_ALL, "Russian");
-  cout << "Тестирование программ поддержки представления треугольных матриц"
-    << endl;
-  for (i = 0; i < 5; i++)
-    for (j = i; j < 5; j++ )
-    {
-      a[i][j] =  i * 10 + j;
-      b[i][j] = (i * 10 + j) * 100;
-    }
-  c = a + b;
-  cout << "Matrix a = " << endl << a << endl;
-  cout << "Matrix b = " << endl << b << endl;
-  cout << "Matrix c = a + b" << endl << c << endl;
+	int n,key,type,op;
+	cout << "Enter the size of the matrix :" << endl;
+	cin >> n;
+	cout << "Choose matrix element type:" << endl 
+		 << "1.Integer" << endl << "2.Float" << endl << "3.Double";
+	cin >> type;
+	while (type != 1 && type != 2 && type != 3)
+	{
+		cout << "Wrong type, try again." << endl;
+		cout << "Choose matrix element type:" << endl
+			<< "1.Integer" << endl << "2.Float" << endl << "3.Double";
+		cin >> type;
+	}
+	if (type == 1)
+	{
+		#define TYPE int
+	}
+	else
+	{
+		if (type == 2)
+		{
+			#define TYPE float
+		}
+		else
+		{
+			#define TYPE double
+		}
+	}
+	TMatrix <TYPE> a(n), b(n);
+	cout << "Enter matrix A, then B";
+	cin >> a >> b;
+	cout << "Choose the operation :" << endl
+		<< "1.A + B" << endl << "2.A - B" << endl << "3. B - A";
+	cin >> op;
+	switch (op)
+	{
+		case 1:
+		{
+			cout << endl << a + b;
+			break;
+		}
+		case 2:
+		{
+			cout << endl << a - b;
+			break;
+		}
+		case 3:
+		{
+			cout << endl << b - a;
+			break;
+		}
+		default:
+		{
+			cout << "Wrong operation, try again";
+			cout << "Choose the operation :" << endl
+				<< "1.A + B" << endl << "2.A - B" << endl << "3. B - A";
+			cin >> op;
+		}
+	}
 }
-//---------------------------------------------------------------------------
+
+
+
+
