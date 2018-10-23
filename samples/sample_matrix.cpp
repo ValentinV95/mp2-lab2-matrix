@@ -7,25 +7,65 @@
 
 #include <iostream>
 #include "utmatrix.h"
+using namespace std;
+
 //---------------------------------------------------------------------------
 
 void main()
 {
-  TMatrix<int> a(5), b(5), c(5);
-  int i, j;
-
-  setlocale(LC_ALL, "Russian");
-  cout << "Тестирование программ поддержки представления треугольных матриц"
+	setlocale(LC_ALL, "Russian");
+  int i, j, n;
+	cout << "Тестирование программ поддержки представления треугольных матриц"
     << endl;
-  for (i = 0; i < 5; i++)
-    for (j = i; j < 5; j++ )
-    {
-      a[i][j] =  i * 10 + j;
-      b[i][j] = (i * 10 + j) * 100;
-    }
-  c = a + b;
-  cout << "Matrix a = " << endl << a << endl;
-  cout << "Matrix b = " << endl << b << endl;
-  cout << "Matrix c = a + b" << endl << c << endl;
+	cout << "Выберете желаемый тип матриц:"
+		<< endl;
+	cout << "Чтобы создать матрицы, введите их размер"
+		<< endl;
+	cin >> n;
+	
+	
+		TMatrix<int> a(n), b(n);
+
+	
+	
+	cout << "Чтобы ввести матрицу самостоятельно, нажмите 1. Чтобы получить случайную матрицу, нажмите любую другую цифру"
+		<< endl;
+	int m;
+	cin >> m;
+	if (m == 1)
+	{
+		cout << "Введите а"
+			<< endl;
+		cout << a;
+		cout << "Введите b"
+			<< endl;
+		cout << b;
+	}
+	else
+	{
+		for (i = 0; i < n; i++)
+			for (j = i; j < n; j++)
+			{
+				a[i][j] = 1 + rand() % 100;
+				b[i][j] = 1 + rand() % 100;
+			}
+	}
+	cout << "Вывод А"
+		<< endl;
+	cout << a;
+	cout << "Вывод Б"
+		<< endl;
+	cout << b;
+	cout << "Вывод А+Б"
+		<< endl;
+	cout << a + b;
+	cout << "Вывод А-Б"
+		<< endl;
+	cout << a - b;
+	cout << "Вывод Б-А"
+		<< endl;
+	cout << b - a;
+
+
 }
 //---------------------------------------------------------------------------
