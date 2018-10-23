@@ -163,7 +163,7 @@ template <class ValType> // вычесть скаляр
 TVector<ValType> TVector<ValType>::operator-(const ValType &val) const
 {
 	TVector <ValType> a(*this);
-	return a + (-1)*val;
+	return a + val*(-1);
 }
 
 template <class ValType> // умножить на скаляр
@@ -205,8 +205,7 @@ TVector<ValType> TVector<ValType>::operator-(const TVector<ValType> &v) const
 		for (int i = Size - 1; i >= 0; i--) a.pVector[StartIndex - v.StartIndex + i] = pVector[i] - a.pVector[StartIndex - v.StartIndex + i];
 		for (int i = 0; i < StartIndex - v.StartIndex; i++)
 		{
-			a.pVector[i] = 0;
-			a.pVector[i] = a.pVector[i] - v.pVector[i];
+			a.pVector[i] = a.pVector[i] - a.pVector[i] - a.pVector[i];
 		}
 		return a;
 	}
