@@ -10,14 +10,13 @@
 #include <stdlib.h>
 //---------------------------------------------------------------------------
 
-void main()
-{
+void main(){
 	TMatrix<int> a(5), b(5), c(5);
 	int i, j, tmp, tmp2;
 
 	setlocale(LC_ALL, "Russian");
 	cout << "Тестирование программ поддержки представления треугольных матриц" << endl;
-	cout << "Ввод матриц рандомными значениями-введите 1" << endl << "Ввод матриц программой (алгоритмом)-введите 2" << endl << "Ручной ввод матриц-введите 3" << endl;
+	cout << "random values [0;1000) -- type 1" << endl << "values from the algorithm -- type 2" << endl << "manual entry of values -- type 3" << endl;
 	cin >> tmp;
 	if (tmp == 2)
 		for (i = 0; i < 5; i++)
@@ -40,7 +39,7 @@ void main()
 				b[i][j] = rand() % 1001;
 			}
 
-	cout << "Сложение матриц-введите 1" << endl << "Вычитание матриц (a-b)-введите 2" << endl << "Вычитание матриц (b-a)-введите 3" << endl;
+	cout << "addition (а+b) -- type 1" << endl << "subtract  (a-b)-- type 2" << endl << "subtract  (b-a)-- type 3" << endl;
 	cin >> tmp2;
 	if (tmp2 == 1) {
 		c = a + b;
