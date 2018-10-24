@@ -16,19 +16,19 @@ void main()
   int i,n, j,t1,t2;
 
     setlocale(LC_ALL, "Russian");
-  cout << "Тестирование программ поддержки представления треугольных матриц" << endl;
+  cout << "Testing programs to support the submission of triangular matrices" << endl;
    
- cout << "Введите рамеры матриц(<10000)"<<endl;
+ cout << "Enter the sizes of matrix(<10000)"<<endl;
  cin >> n;
  TMatrix<int> a(n), b(n), c(n);
  if (n > MAX_MATRIX_SIZE)
  {
-	 cout<<"Размер матриц превышает максимум"<<endl;
+	 cout<<"The size of the matrices exceeds the maximum"<<endl;
  }
- cout << "Выберите способ заполнения матриц:" << endl;
- cout << "1.Заполнение матрицы рандомными числами" << endl;
- cout << "2.Использование шаблонной матрицы" << endl;
- cout << "3.Заполнение матрица пользователем" << endl;
+ cout << "Choose how to fill the matrices:" << endl;
+ cout << "1.Filling the matrix with random numbers" << endl;
+ cout << "2.The use of a template matrix" << endl;
+ cout << "3.Filling in the matrix by the user" << endl;
   cin >> t1;
   if (t1 == 1)
   {
@@ -52,14 +52,14 @@ void main()
   }
   if (t1 == 3) 
   {
-	  cout << "Введите матрицу a" << endl;
+	  cout << "Enter matrix a" << endl;
 	  cin >> a;
-	  cout << "Введите матрицу b" << endl;
+	  cout << "Enter matrix b" << endl;
 	  cin >> b;
   }
-  cout << "Выберите дествия, которое необходимо выполнить с матрицами" << endl;
-  cout << "1.Сложение матриц a+b" << endl;
-  cout<< "2.Вычитание матриц a-b" << endl;
+  cout << "Select the actions you want to perform on the matrices" << endl;
+  cout << "1.Addition of matrices a+b" << endl;
+  cout<< "2.Subtraction of matrices a-b" << endl;
   cin >> t2;
   if (t2 == 1) 
   {
