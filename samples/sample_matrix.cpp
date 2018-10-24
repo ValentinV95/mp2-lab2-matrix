@@ -15,38 +15,38 @@ void main()
 	setlocale(LC_CTYPE, "Russian");
 	int k, t;
 	int a1, b1;
-	cout << " ТРЕУГОЛЬНЫЕ МАТРИЦЫ" << endl;
-	cout << "Ввод матриц" << endl;
-	cout << "Введите количество строк матриц:";
+	cout << " Triangular matrix" << endl;
+	cout << "Vvod matrix" << endl;
+	cout << "Vvedite kolichestvo strok matrix:";
 	cin >> t;
 	TMatrix<int> a(t), b(t);
-	cout << "Введите матрицу А" << endl;
+	cout << "Vvedite matrix A" << endl;
 	for (int i = 0; i < t; i++)
 		cin >> a[i];
-	cout << "Матрица А = " << endl << a << endl;
-	cout << "Введите матрицу В" << endl;
+	cout << "Matrix A = " << endl << a << endl;
+	cout << "Vvedite matrix B" << endl;
 	for (int i = 0; i < t; i++)
 		cin >> b[i];
-	cout << "Матрица В = " << endl << b << endl;
-	cout << " МЕНЮ:" << endl;
+	cout << "Matrix В = " << endl << b << endl;
+	cout << " MENU:" << endl;
 	do {
-		cout << "1.Сложение матриц А и В" << endl;
-		cout << "2.Вычитание матриц (А-В)" << endl;
-		cout << "3.Вычитание матриц (В-А)" << endl;
-		cout << "4.Выход" << endl;
-		cout << "Выбрать пункт:";
+		cout << "1.Sum A and B" << endl;
+		cout << "2.Sub matrix (A-B) " << endl;
+		cout << "3.Sub matrix (B-A)" << endl;
+		cout << "4.Exit" << endl;
+		cout << "Vibrat punkt:";
 		cin >> k;
 		switch (k) {
 		case 1:
-			cout << "Сложение матриц А и В" << endl;
+			cout << "Sum A and B" << endl;
 			cout << a + b;
 			break;
 		case 2:
-			cout << "Вычитание матриц (А-В)" << endl;
+			cout << "Sub matrix (A-B)" << endl;
 			cout << a - b;
 			break;
 		case 3:
-			cout << "Вычитание матриц (В-A)" << endl;
+			cout << "Sub matrix (B-A)" << endl;
 			cout << b - a;
 			break;
 		case 4: break;

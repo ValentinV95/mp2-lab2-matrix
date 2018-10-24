@@ -196,7 +196,7 @@ TVector<ValType> TVector<ValType>::operator+(const TVector<ValType> &v)
 	if (Size + StartIndex != v.Size + v.StartIndex) {
 		throw "Vectors have not equal size";
 	}
-	if (Size > v.Size) {
+	if (Size < v.Size) {
 		TVector<ValType> rez(v.Size, v.StartIndex);
 		for (int i = 0; i < StartIndex - v.StartIndex; i++) {
 			rez.pVector[i] = v.pVector[i];
