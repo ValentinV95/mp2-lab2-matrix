@@ -68,15 +68,21 @@ TEST(TMatrix, throws_when_set_element_with_too_large_index)
 
 TEST(TMatrix, can_assign_matrix_to_itself)
 {
-	TMatrix<int> m(5);
+	TMatrix<int> m(2);
+	m[0][0]=1;
+	m[0][1]=1;
+	m[1][1]=1;
 	TMatrix<int> m2(m);
 	EXPECT_EQ(m,m2);
 }
 
 TEST(TMatrix, can_assign_matrices_of_equal_size)
 {
-	TMatrix<int> m(5), m2(5);
-	m = m2;
+	TMatrix<int> m(2), m2(2);
+	m[0][0]=1;
+	m[0][1]=1;
+	m[1][1]=1;
+	m2 = m ;
 	EXPECT_EQ(m,m2);
 }
 
@@ -89,28 +95,43 @@ TEST(TMatrix, assign_operator_change_matrix_size)
 
 TEST(TMatrix, can_assign_matrices_of_different_size)
 {
-	TMatrix<int> m(5), m2(7);
-	m = m2;
+	TMatrix<int> m(2), m2(7);
+	m[0][0]=1;
+	m[0][1]=1;
+	m[1][1]=1;
+	m2= m ;
 	EXPECT_EQ(m,m2);
 }
 
 TEST(TMatrix, compare_equal_matrices_return_true)
 {
-	TMatrix<int> m(5), m2(6);
-	m = m2;
+	TMatrix<int> m(2), m2(6);
+	m[0][0]=1;
+	m[0][1]=1;
+	m[1][1]=1;
+	m2 = m;
 	EXPECT_EQ(m==m2, true);
 }
 
 TEST(TMatrix, compare_matrix_with_itself_return_true)
 {
-	TMatrix<int> m(3);
-
+	TMatrix<int> m(2);
+	m[0][0]=1;
+	m[0][1]=1;
+	m[1][1]=1;
 	EXPECT_EQ(m == m, true);
 }
 
 TEST(TMatrix, matrices_with_different_size_are_not_equal)
 {
 	TMatrix<int> m(1), m2(2);
+
+	m[0][0]=1;
+	
+	m2[0][0]=1;
+	m2[0][1]=1;
+	m2[1][1]=1;
+
 	EXPECT_EQ(m != m2, true);
 }
 
@@ -119,15 +140,16 @@ TEST(TMatrix, can_add_matrices_with_equal_size)
 	TMatrix<int> m(2), m2(2), m3(2);
 
 	m[0][0]=1;
-	m[1][1]=2;
+	m[0][1]=1;
+	m[1][1]=1;
 
-	m2[0][1]=1;
-	m2[1][0]=2;
+	m[0][0]=1;
+	m[0][1]=1;
+	m[1][1]=1;
 
-	m3[0][0]=1;
-	m3[1][1]=2;
-	m3[0][1]=1;
-	m3[1][0]=2;
+	m3[0][0]=2;	 
+	m3[0][1]=2;
+	m3[1][1]=2;	
 
 	EXPECT_EQ(m+m2, m3);
 }
@@ -142,16 +164,17 @@ TEST(TMatrix, can_subtract_matrices_with_equal_size)
 {
 	TMatrix<int> m(2), m2(2), m3(2);
 
+	m[0][0]=3;
+	m[0][1]=3;
+	m[1][1]=3;
+
 	m[0][0]=1;
-	m[1][1]=2;
+	m[0][1]=1;
+	m[1][1]=1;
 
-	m2[0][1]=1;
-	m2[1][0]=2;
-
-	m3[0][0]=1;
-	m3[1][1]=2;
-	m3[0][1]=-1;
-	m3[1][0]=-2;
+	m3[0][0]=2;	 
+	m3[0][1]=2;
+	m3[1][1]=2;	
 
 	EXPECT_EQ(m-m2, m3);
 }

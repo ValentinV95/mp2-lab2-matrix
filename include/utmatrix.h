@@ -143,11 +143,11 @@ TVector<ValType> TVector<ValType>::operator+(const ValType &val)
 {
 	if (val==0) { return *this; }
 	TVector<ValType> a(Size + StartIndex, 0);
-	for (int i = 0 ; i < StartIndex; i++) {
+	for (int i = 0 ; i < a.Size; i++) {
 		a.pVector[i] = val;
 	}
-	for (int i = StartIndex; i < Size; i++) {
-		a.pVector[i]= pVector[i] + val;
+	for (int i = StartIndex; i < a.Size; i++) {
+		a.pVector[i] = a.pVector[i] + pVector[i-StartIndex];
 	}
 	return a;
 } /*-------------------------------------------------------------------------*/
