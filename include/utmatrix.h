@@ -260,8 +260,8 @@ ValType TVector<ValType>::operator*(const TVector<ValType> &v)
 		else
 		{
 			ValType Rez = 0;
-			for (int i = StartIndex; i < v.Size; i++)
-				Rez = Rez+pVector[i+v.StartIndex - StartIndex] * v.pVector[i];
+			for (int i = Size - 1; i >= 0; i--)
+				Rez = Rez+v.pVector[i-v.StartIndex + StartIndex] * pVector[i];
 			return Rez;
 		}
 	}
