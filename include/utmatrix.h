@@ -178,10 +178,11 @@ TVector<ValType> TVector<ValType>::operator*(const ValType &val)
 template <class ValType> // сложение
 TVector<ValType> TVector<ValType>::operator+(const TVector<ValType> &v)
 {
-	if (Size == v.Size)
+	if (Size+StartIndex == v.Size +v.StartIndex)
 	{
 		TVector <ValType>Temp((StartIndex <= v.StartIndex) ? *this : v);
-		for (int i = 0; i < Size; i++)
+
+		for (int i = (StartIndex >= v.StartIndex) ?StartIndex : v.StartIndex; i < Size; i++)
 			Temp.pVector[i] = v.pVector[i] + pVector[i];
 		return Temp;
 	}
@@ -191,7 +192,7 @@ TVector<ValType> TVector<ValType>::operator+(const TVector<ValType> &v)
 template <class ValType> // вычитание
 TVector<ValType> TVector<ValType>::operator-(const TVector<ValType> &v)
 {
-	if (Size != v.Size)
+	if (Size + StartIndex != v.Size+ v.StartIndex)
 		throw("subtract_vectors_of_different_size");
 	if (StartIndex < v.StartIndex)
 	{
