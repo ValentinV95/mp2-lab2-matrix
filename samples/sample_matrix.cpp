@@ -30,9 +30,9 @@ void main()
 	
 	cout << "Чтобы ввести матрицу самостоятельно, нажмите 1. Чтобы получить случайную матрицу, нажмите любую другую цифру"
 		<< endl;
-	int m;
-	cin >> m;
-	if (m == 1)
+	int chs;
+	cin >> chs;
+	if (chs == 1)
 	{
 		cout << "Введите а"
 			<< endl;
@@ -50,22 +50,50 @@ void main()
 				b[i][j] = 1 + rand() % 100;
 			}
 	}
+	cout << "Матрицы выглядят следующим образом"
+		<< endl;
 	cout << "Вывод А"
 		<< endl;
 	cout << a;
 	cout << "Вывод Б"
 		<< endl;
 	cout << b;
-	cout << "Вывод А+Б"
+	cout << "Выберите операцию\n"<<"1. А+Б\n"<<"2. A-Б\n"<<"3. Б-A"
 		<< endl;
-	cout << a + b;
-	cout << "Вывод А-Б"
-		<< endl;
-	cout << a - b;
-	cout << "Вывод Б-А"
-		<< endl;
-	cout << b - a;
+	int logp, flag;
+	do {
+		cin >> logp;
+		switch (logp)
+		{
+		case 1:
+			cout << "Вывод А+Б"
+				<< endl;
+			cout << a + b;
+			flag = 1;
+			break;
+		case 2:
+			cout << "Вывод А-Б"
+				<< endl;
+			cout << a - b;
+			flag = 1;
+			break;
+		case 3:
+			cout << "Вывод Б-А"
+				<< endl;
+			cout << b - a;
+			flag = 1;
+			break;
 
+		default:
+			cout << "Неверный номер, попробуйте ещё раз"
+				<< endl;
+			flag = 0;
+			break;
+		}
+	} while (flag != 1);
+	
+	system("pause");
+	
 
 }
 //---------------------------------------------------------------------------

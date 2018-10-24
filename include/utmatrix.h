@@ -184,7 +184,7 @@ TVector<ValType> TVector<ValType>::operator*(const ValType &val)
 {
 	TVector<ValType> Rez(*this);
 
-	if (val)
+	if ((val) || (val==0))
 	{
 		for (int i = 0; i < Size; i++)
 			Rez.pVector[i] = val*Rez.pVector[i];
