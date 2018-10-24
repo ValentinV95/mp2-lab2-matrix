@@ -53,6 +53,8 @@ public:
   }
   friend ostream& operator<<(ostream &out, const TVector &v)
   {
+	  for (int j = 0; j < v.StartIndex; j++)
+		  out << 0 << ' ';
     for (int i = 0; i < v.Size; i++)
       out << v.pVector[i] << ' ';
     return out;
@@ -133,6 +135,7 @@ template <class ValType> // присваивание
 TVector<ValType>& TVector<ValType>::operator=(const TVector &v)
 {
 	Size = v.Size;
+	StartIndex = v.StartIndex;
 	delete[] pVector;
 	pVector = new ValType[Size];
 	for (int i = 0; i < Size; i++)
