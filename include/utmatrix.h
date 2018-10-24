@@ -183,7 +183,7 @@ TVector<ValType> TVector<ValType>::operator-(const ValType &val)
 	TVector <ValType> a(Size + StartIndex, 0);
 	for (int i = 0;i < a.Size;i++)
 	{
-		a.pVector[i] = -val;
+		a.pVector[i] = val - val - val;
 	}
 	for (int i = StartIndex;i < Size;i++)
 	{

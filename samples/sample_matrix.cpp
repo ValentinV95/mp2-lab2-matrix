@@ -13,32 +13,7 @@ void main()
 	int n,key,type,op;
 	cout << "Enter the size of the matrix :" << endl;
 	cin >> n;
-	cout << "Choose matrix element type:" << endl 
-		 << "1.Integer" << endl << "2.Float" << endl << "3.Double";
-	cin >> type;
-	while (type != 1 && type != 2 && type != 3)
-	{
-		cout << "Wrong type, try again." << endl;
-		cout << "Choose matrix element type:" << endl
-			<< "1.Integer" << endl << "2.Float" << endl << "3.Double";
-		cin >> type;
-	}
-	if (type == 1)
-	{
-		#define TYPE int
-	}
-	else
-	{
-		if (type == 2)
-		{
-			#define TYPE float
-		}
-		else
-		{
-			#define TYPE double
-		}
-	}
-	TMatrix <TYPE> a(n), b(n);
+	TMatrix <int> a(n), b(n);
 	cout << "Enter matrix A, then B";
 	cin >> a >> b;
 	cout << "Choose the operation :" << endl
