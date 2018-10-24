@@ -134,14 +134,11 @@ TVector<ValType>& TVector<ValType>::operator=(const TVector &v)
 		Size = v.Size;
 		StartIndex = v.StartIndex;
 		pVector = new ValType[Size];
-		if (pVector != 0) {
-			for (int i = 0; i < Size; i++)
+		for (int i = 0; i < Size; i++)
 			{
 				pVector[i] = v.pVector[i];
 			}
-		}
 	}
-	else throw 1;
 	return *this;
 } /*-------------------------------------------------------------------------*/
 
@@ -203,27 +200,25 @@ TVector<ValType> TVector<ValType>::operator*(const ValType &val)
 template <class ValType> // сложение
 TVector<ValType> TVector<ValType>::operator+(const TVector<ValType> &v)
 {
-	if (Size + StartIndex != v.Size + v.StartIndex)
+	if (Size + StartIndex != v.Size + v.StartIndex) {
 		throw 1;
+	}
+	int s, si;
 	if (Size > v.Size) {
-		TVector <ValType> Temp (Size, StartIndex);
-		for (int i = 0; i < v.StartIndex-StartIndex; i++) {
-			Temp.pVector[i] = pVector[i];
-		}
-		for (int i = v.StartIndex-StartIndex; i < Size; i++) {
-			Temp.pVector[i] = pVector[i] + v.pVector[i];
-		}
-		return Temp;
+		TVector<ValType> sum(Size, StartIndex);
+		for (int i = 0; i < v.StartIndex - StartIndex; i++)
+			sum.pVector[i] = pVector[i];
+		for (int i = v.StartIndex - StartIndex; i < Size; i++)
+			sum.pVector[i] = pVector[i] + v.pVector[i - v.StartIndex + StartIndex];
+		return sum;
 	}
 	else {
-		TVector <ValType> Temp (v.Size, v.StartIndex);
-		for (int i = 0; i < StartIndex-v.StartIndex; i++) {
-			Temp.pVector[i] = v.pVector[i];
-		}
-		for (int i = StartIndex-v.StartIndex; i < v.Size; i++) {
-			Temp.pVector[i] = pVector[i] + v.pVector[i];
-		}
-		return Temp;
+		TVector<ValType> sum(v.Size, v.StartIndex);
+		for (int i = 0; i < StartIndex - v.StartIndex; i++)
+			sum.pVector[i] = v.pVector[i];
+		for (int i = StartIndex - v.StartIndex; i < v.Size; i++)
+			sum.pVector[i] = pVector[i - StartIndex + v.StartIndex] + v.pVector[i];
+		return sum;
 	}
 } /*-------------------------------------------------------------------------*/
 
@@ -273,17 +268,16 @@ ValType TVector<ValType>::operator*(const TVector<ValType> &v)
 {
 	if (Size + StartIndex != v.Size + v.StartIndex)
 		throw 1;
-	ValType k = 0;
-	int max;
-	if (StartIndex > v.StartIndex)
-		max = StartIndex;
-	else
-		max = v.StartIndex;
-	for (int i = max; i < Size; i++)
-	{
-		k = k + (pVector[i] * v.pVector[i]);
+	ValType mul = 0;
+	if (Size > v.Size) {
+		for (int i = v.StartIndex - StartIndex; i < Size; i++)
+			mul += pVector[i] * v.pVector[i - v.StartIndex + StartIndex];
 	}
-	return k;
+	else {
+		for (int i = StartIndex - v.StartIndex; i < v.Size; i++)
+			mul += pVector[i - StartIndex + v.StartIndex] * v.pVector[i];
+	}
+	return mul;
 } /*-------------------------------------------------------------------------*/
 
 
