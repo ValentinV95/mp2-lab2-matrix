@@ -180,11 +180,25 @@ TVector<ValType> TVector<ValType>::operator+(const TVector<ValType> &v)
 {
 	if (Size+StartIndex == v.Size +v.StartIndex)
 	{
+		int 
 		TVector <ValType>Temp((StartIndex <= v.StartIndex) ? *this : v);
-
-		for (int i = (StartIndex >= v.StartIndex) ?StartIndex : v.StartIndex; i < Size; i++)
-			Temp.pVector[i] = v.pVector[i] + pVector[i];
-		return Temp;
+		if (StartIndex <= v.StartIndex)
+		{
+			TVector<ValType> sum(Size, StartIndex);
+			for (int i = 0; i < v.StartIndex - StartIndex; i++)
+				Temp.pVector[i] = pVector[i];
+			for (int i = v.StartIndex - StartIndex; i < Size; i++)
+				Temp.pVector[i] = pVector[i] + v.pVector[i - v.StartIndex + StartIndex];
+			return Temp;
+		}
+		else
+		{
+			for (int i = 0; i < StartIndex - v.StartIndex; i++)
+				Temp.pVector[i] = v.pVector[i];
+			for (int i = StartIndex - v.StartIndex; i < v.Size; i++)
+				Temp.pVector[i] = pVector[i - StartIndex + v.StartIndex] + v.pVector[i];
+			return Temp;
+		}
 	}
 	else throw("add_vectors_of_different_size");
 } /*-------------------------------------------------------------------------*/
@@ -197,16 +211,17 @@ TVector<ValType> TVector<ValType>::operator-(const TVector<ValType> &v)
 	if (StartIndex < v.StartIndex)
 	{
 		TVector <ValType> Temp(*this);
-		for (int i = v.StartIndex; i < Temp.Size; i++)
-			Temp.pVector[i] = this->pVector[i] - v.pVector[i];
+		for (int i = v.Size - 1; i >= 0; i--)
+			Temp.pVector[i + v.StartIndex - StartIndex] = Temp.pVector[i + v.StartIndex - StartIndex] - v.pVector[i];
 		return Temp;
 	}
 	else
 	{
 		TVector <ValType> Temp(v);
-		Temp[Temp.StartIndex] = v.pVector[v.StartIndex] * (-1);
-		for (int i = 0; i < Temp.Size; i++)
-			Temp.pVector[i] = this->pVector[i] - v.pVector[i];
+		for (int i = Size - 1; i >= 0; i--)
+			Temp.pVector[i + StartIndex - v.StartIndex] = pVector[i] - Temp.pVector[i + StartIndex - v.StartIndex];
+		for (int i = 0; i < v.Size - Size; i++)
+			Temp.pVector[i] = Temp.pVector[i] - Temp.pVector[i] - Temp.pVector[i];
 		return Temp;
 	}
 } /*-------------------------------------------------------------------------*/
