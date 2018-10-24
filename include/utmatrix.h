@@ -246,11 +246,11 @@ ValType TVector<ValType>::operator*(const TVector<ValType> &v)
 	}
 	ValType mul = 0;
 	if (Size > v.Size) {
-		for (int i = v.StartIndex - StartIndex; i < Size; i++)
+		for (int i = v.StartIndex; i < Size; i++)
 			mul += pVector[i] * v.pVector[i-v.StartIndex+StartIndex];
 	}
 	else {
-		for (int i = StartIndex - v.StartIndex; i < v.Size; i++)
+		for (int i = StartIndex ; i < v.Size; i++)
 			mul += pVector[i-StartIndex+v.StartIndex] * v.pVector[i];
 	}
 	return mul;
