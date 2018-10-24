@@ -1,9 +1,9 @@
-// ННГУ, ВМК, Курс "Методы программирования-2", С++, ООП
+п»ї// РќРќР“РЈ, Р’РњРљ, РљСѓСЂСЃ "РњРµС‚РѕРґС‹ РїСЂРѕРіСЂР°РјРјРёСЂРѕРІР°РЅРёСЏ-2", РЎ++, РћРћРџ
 //
-// sample_matrix.cpp - Copyright (c) Гергель В.П. 07.05.2001
-//   Переработано для Microsoft Visual Studio 2008 Сысоевым А.В. (20.04.2015)
+// sample_matrix.cpp - Copyright (c) Р“РµСЂРіРµР»СЊ Р’.Рџ. 07.05.2001
+//   РџРµСЂРµСЂР°Р±РѕС‚Р°РЅРѕ РґР»СЏ Microsoft Visual Studio 2008 РЎС‹СЃРѕРµРІС‹Рј Рђ.Р’. (20.04.2015)
 //
-// Тестирование верхнетреугольной матрицы
+// РўРµСЃС‚РёСЂРѕРІР°РЅРёРµ РІРµСЂС…РЅРµС‚СЂРµСѓРіРѕР»СЊРЅРѕР№ РјР°С‚СЂРёС†С‹
 
 #include <iostream>
 #include "utmatrix.h"
@@ -15,7 +15,7 @@ void main(){
 	int i, j, tmp, tmp2;
 
 	setlocale(LC_ALL, "Russian");
-	cout << "Тестирование программ поддержки представления треугольных матриц" << endl;
+	cout << "РўРµСЃС‚РёСЂРѕРІР°РЅРёРµ РїСЂРѕРіСЂР°РјРј РїРѕРґРґРµСЂР¶РєРё РїСЂРµРґСЃС‚Р°РІР»РµРЅРёСЏ С‚СЂРµСѓРіРѕР»СЊРЅС‹С… РјР°С‚СЂРёС†" << endl;
 	cout << "random values [0;1000) -- type 1" << endl << "values from the algorithm -- type 2" << endl << "manual entry of values -- type 3" << endl;
 	cin >> tmp;
 	if (tmp == 2)
@@ -39,7 +39,7 @@ void main(){
 				b[i][j] = rand() % 1001;
 			}
 
-	cout << "addition (а+b) -- type 1" << endl << "subtract  (a-b)-- type 2" << endl << "subtract  (b-a)-- type 3" << endl;
+	cout << "addition (a+b) -- type 1" << endl << "subtract  (a-b)-- type 2" << endl << "subtract  (b-a)-- type 3" << endl;
 	cin >> tmp2;
 	if (tmp2 == 1) {
 		c = a + b;
