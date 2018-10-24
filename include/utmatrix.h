@@ -323,20 +323,9 @@ bool TMatrix<ValType>::operator!=(const TMatrix<ValType> &mt) const
 template <class ValType> // присваивание
 TMatrix<ValType>& TMatrix<ValType>::operator=(const TMatrix<ValType> &mt)
 {
-	if (*this != mt) {
-		delete[]pVector;
-		Size = mt.Size;
-		StartIndex = mt.StartIndex;
-		pVector = new TVector<ValType>[StartIndex + Size];
-		if (mt.pVector != NULL) {
-			for (int i = 0; i < Size; i++)
-				pVector[i] = mt.pVector[i];
-		}
-		else
-			throw("mt.pVector=NULL in assigment");
-
-	}
+	TVector<TVector<ValType>> :: operator= (mt);
 	return *this;
+	
 } /*-------------------------------------------------------------------------*/
 
 template <class ValType> // сложение
