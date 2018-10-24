@@ -231,38 +231,25 @@ TVector<ValType> TVector<ValType>::operator+(const TVector<ValType> &v)
 template <class ValType> // вычитание
 TVector<ValType> TVector<ValType>::operator-(const TVector<ValType> &v)
 {
-	if (Size + StartIndex != v.Size + v.StartIndex)
-	{
-		throw "Different length";
-	}
+	if (StartIndex + Size != v.Size + v.StartIndex)
+		throw "Not equal size of vectors";
 	else
 	{
-		if (Size < v.Size)
+		if (Size >= v.Size)
 		{
-			TVector <ValType> a(v);
-			TVector <ValType> b(v);
-			for (int i = 0; i < b.Size; i++)
-			{
-				b.pVector[i] = (ValType)0;
-			}
-			for (int i = 0; i < StartIndex - v.StartIndex; i++)
-			{
-				a.pVector[i] = b.pVector[i] - a.pVector[i];
-			}
-			for (int i = 0; i < Size; i++)
-			{
-				a.pVector[StartIndex - v.StartIndex + i] = pVector[i] - a.pVector[StartIndex - v.StartIndex + i];
-			}
-			return a;
+			TVector<ValType> res(*this);
+			for (int i = 0; i < v.Size; i++)
+				res.pVector[i + v.StartIndex - StartIndex] = res.pVector[i + v.StartIndex - StartIndex] - v.pVector[i];
+			return(res);
 		}
 		else
 		{
-			TVector <ValType> a(*this);
-			for (int i = 0; i < v.Size; i++)
-			{
-				a.pVector[v.StartIndex - StartIndex + i] = a.pVector[v.StartIndex - StartIndex + i] - v.pVector[i];
-			}
-			return a;
+			TVector<ValType> res(v);
+			for (int i = 0; i < StartIndex - v.StartIndex; i++)
+				res.pVector[i] = v.pVector[i] * (-1);
+			for (int i = 0; i < Size; i++)
+				res.pVector[i + StartIndex - v.StartIndex] = pVector[i] - v.pVector[i + StartIndex - v.StartIndex];
+			return(res);
 		}
 	}
 } /*-------------------------------------------------------------------------*/
