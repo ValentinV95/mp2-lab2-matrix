@@ -183,14 +183,12 @@ template <class ValType> // умножить на скаляр
 TVector<ValType> TVector<ValType>::operator*(const ValType &val) 
 {
 	TVector<ValType> Rez(*this);
-
-	if ((val) || (val==0))
-	{
+	
 		for (int i = 0; i < Size; i++)
 			Rez.pVector[i] = val*Rez.pVector[i];
 		return Rez;
-	}
-	else return Rez;
+	
+
 } /*-------------------------------------------------------------------------*/
 
 template <class ValType> // сложение
@@ -254,16 +252,16 @@ ValType TVector<ValType>::operator*(const TVector<ValType> &v)
 		if (StartIndex < v.StartIndex)
 		{
 			ValType Rez = 0;
-			for (int i = v.Size - 1; i >= 0; i--)
-				Rez += pVector[i + v.StartIndex - StartIndex] * v.pVector[i];
+			for (int i = v.StartIndex; i < Size; i++)
+				Rez += pVector[i] * v.pVector[i - v.StartIndex + StartIndex];
 			return Rez;
 
 		}
 		else
 		{
 			ValType Rez = 0;
-			for (int i = Size - 1; i >= 0; i--)
-				Rez = Rez+pVector[i + StartIndex - v.StartIndex] * v.pVector[i];
+			for (int i = StartIndex; i < v.Size; i++)
+				Rez = Rez+pVector[i+v.StartIndex - StartIndex] * v.pVector[i];
 			return Rez;
 		}
 	}
@@ -307,8 +305,8 @@ TMatrix<ValType>::TMatrix(int s): TVector<TVector<ValType>>(s)
 	if ((s > MAX_MATRIX_SIZE) || (s < 0)) throw ("Uncorr size");
 	for (int i = 0; i < s; i++)
 	{
-		TVector<ValType> s(s - i, i);
-		(*this)[i] = s;
+		TVector<ValType> Rez(s - i, i);
+		(*this)[i] = Rez;
 	}
 	
 	
