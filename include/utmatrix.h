@@ -222,7 +222,7 @@ TVector<ValType> TVector<ValType>::operator-(const TVector<ValType> &v)
 		for(int i = 0; i < StartIndex - v.StartIndex ; i++ ) {
 			a.pVector[i]= a.pVector[i] -v.pVector[i];
 		}
-		for(int i = v.Size - 1; i >=0; i--)	{
+		for(int i = Size - 1; i >=0; i--)	{
 			a.pVector[i - v.StartIndex + StartIndex] = pVector[i] - v.pVector[i - v.StartIndex + StartIndex];
 		}
 
@@ -306,10 +306,7 @@ TMatrix<ValType>::TMatrix(const TMatrix<ValType> &mt):
 
 template <class ValType> // конструктор преобразования типа
 TMatrix<ValType>::TMatrix(const TVector<TVector<ValType> > &mt):
-  TVector<TVector<ValType> >(mt) {
-	  TVector<TVector<ValType>> a (mt);
-	  StartIndex = 0;
-	  Size = a.GetSize();
+  TVector<TVector<ValType> >(mt) {	  
   }
 
 template <class ValType> // сравнение
