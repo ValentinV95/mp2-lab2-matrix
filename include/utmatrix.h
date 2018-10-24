@@ -105,10 +105,10 @@ TVector<ValType>::~TVector()
 template <class ValType> // доступ
 ValType& TVector<ValType>::operator[](int pos)
 {
-	if ((pos < 0) || (pos >= Size)) {
+	if (pos < 0 || pos >= Size+StartIndex) {
 		throw("pos <0 or pos>=(StartIndex+Size) in operator[]");
 	}
-	return pVector[pos];
+	return pVector[pos-StartIndex];
 
 } /*-------------------------------------------------------------------------*/
 
