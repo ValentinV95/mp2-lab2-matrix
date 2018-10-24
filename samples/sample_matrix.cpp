@@ -19,8 +19,8 @@ void main()
 	bool res;
 	do {
 		cout << "Choose one of the items:" << '\n';
-		char*d[3] = { "1. Input Matrices","2. Form matrices randomly","3. Exit" };//массив пунктов меню
-		for (int i = 0; i < 3; i++)//печать пунктов меню
+		char*d[3] = { "1. Input Matrices","2. Form matrices randomly","3. Exit" };
+		for (int i = 0; i < 3; i++)
 			cout << d[i] << '\n';
 		cout << "Input a menu number:";
 		cin >> k;
@@ -51,8 +51,8 @@ void main()
 			cout << "b= ";
 			cout << b << '\n';
 		}
-		char*e[3] = { "1. a+b=","2. a-b=","3. a==b" };//массив пунктов меню
-		for (int i = 0; i < 3; i++)//печать пунктов меню
+		char*e[3] = { "1. a+b=","2. a-b=","3. a==b" };
+		for (int i = 0; i < 3; i++)
 			cout << e[i] << '\n';
 		cout << "Input a menu number:";
 		cin >> l;
