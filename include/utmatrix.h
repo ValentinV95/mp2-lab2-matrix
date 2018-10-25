@@ -272,9 +272,6 @@ ValType TVector<ValType>::operator*(const TVector<ValType> &v)
 		small = this;
 	}
 
-	for (int i = (*bg).StartIndex; i < (*small).StartIndex; i++)
-		res += (*bg).pVector[i-(*bg).StartIndex] ;
-
 	for (int i = (*small).StartIndex; i < (*small).StartIndex + (*small).Size ; i++)
 		res += (*bg).pVector[i - (*bg).StartIndex] * (*small).pVector[i - (*small).StartIndex];
 		
