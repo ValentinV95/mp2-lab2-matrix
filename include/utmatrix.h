@@ -179,12 +179,11 @@ template <class ValType> // сложение
 TVector<ValType> TVector<ValType>::operator+(const TVector<ValType> &v)
 {
 	if (Size+StartIndex == v.Size +v.StartIndex)
-	{
-		int 
-		TVector <ValType>Temp((StartIndex <= v.StartIndex) ? *this : v);
+	{ 
+		//TVector <ValType>Temp((StartIndex <= v.StartIndex) ? *this : v);
 		if (StartIndex <= v.StartIndex)
 		{
-			TVector<ValType> sum(Size, StartIndex);
+			TVector<ValType> Temp(Size, StartIndex);
 			for (int i = 0; i < v.StartIndex - StartIndex; i++)
 				Temp.pVector[i] = pVector[i];
 			for (int i = v.StartIndex - StartIndex; i < Size; i++)
@@ -193,6 +192,7 @@ TVector<ValType> TVector<ValType>::operator+(const TVector<ValType> &v)
 		}
 		else
 		{
+			TVector<ValType> Temp(Size, v.StartIndex);
 			for (int i = 0; i < StartIndex - v.StartIndex; i++)
 				Temp.pVector[i] = v.pVector[i];
 			for (int i = StartIndex - v.StartIndex; i < v.Size; i++)
