@@ -53,8 +53,6 @@ public:
   }
   friend ostream& operator<<(ostream &out, const TVector &v)
   {
-	  for (int j = 0; j < v.StartIndex; j++)
-		  out << 0 << ' ';
     for (int i = 0; i < v.Size; i++)
       out << v.pVector[i] << ' ';
     return out;
@@ -177,75 +175,56 @@ TVector<ValType> TVector<ValType>::operator*(const ValType &val)
 template <class ValType> // сложение
 TVector<ValType> TVector<ValType>::operator+(const TVector<ValType> &v)
 {
-	if (Size + StartIndex != v.Size + v.StartIndex)
-		throw"different length";
 
-	if (Size > v.Size)
+	if (Size + StartIndex == v.Size + v.StartIndex)
 	{
-		TVector<ValType> tmp(Size + StartIndex, StartIndex);
-		for (int i = 0; i < v.StartIndex - StartIndex; i++)
+		if (StartIndex < v.StartIndex)
 		{
-			tmp.pVector[i] = pVector[i];
+			TVector<ValType> tmp(*this);
+			for (int i = v.Size - 1; i >= 0; i--)
+				tmp.pVector[i + v.StartIndex - StartIndex] = tmp.pVector[i + v.StartIndex - StartIndex] + v.pVector[i];
+			return tmp;
 		}
-		for (int i = v.StartIndex - StartIndex; i < tmp.Size; i++)
+		else
 		{
-			tmp.pVector[i] = pVector[i] + v.pVector[i - v.StartIndex + StartIndex];
+			TVector<ValType> tmp(v);
+			for (int i = Size - 1; i >= 0; i--)
+				tmp.pVector[i + StartIndex - v.StartIndex] = tmp.pVector[i + StartIndex - v.StartIndex] + pVector[i];
+			return tmp;
 		}
-
-		return tmp;
 	}
-	else {
-		TVector<ValType> tmp(v.StartIndex + v.Size, v.StartIndex);
-		for (int i = 0; i < StartIndex - v.StartIndex; i++)
-		{
-			tmp.pVector[i] = v.pVector[i];
-		}
-		for (int i = StartIndex - v.StartIndex; i < v.Size; i++)
-		{
-			tmp.pVector[i] = pVector[i + v.StartIndex - StartIndex] + v.pVector[i];
-		}
-
-		return tmp;
+	else throw"different length";
+	
 
 	}
 		
-} /*-------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------*/
 
 template <class ValType> // вычитание
 TVector<ValType> TVector<ValType>::operator-(const TVector<ValType> &v)
 {
-
-	if (Size + StartIndex != v.Size + v.StartIndex)
-		throw"different length";
-
-	if (Size > v.Size)
+	if (Size + StartIndex == v.Size + v.StartIndex)
 	{
-		TVector<ValType> tmp(Size+StartIndex, StartIndex);
-		for (int i = 0; i < v.StartIndex-StartIndex; i++)
+		if (StartIndex < v.StartIndex)
 		{
-			tmp.pVector[i] = pVector[i];
-		}
-		for (int i = v.StartIndex-StartIndex; i < tmp.Size; i++)
-		{
-			tmp.pVector[i] = pVector[i] - v.pVector[i-v.StartIndex + StartIndex];
-		}
-
-		return tmp;
-	}
-	else {
-		TVector<ValType> tmp (v.StartIndex+v.Size,v.StartIndex);
-		for (int i = 0; i < StartIndex-v.StartIndex; i++)
-		{
-			tmp.pVector[i] = v.pVector[i] - v.pVector[i] - v.pVector[i];
-		}
-		for (int i = StartIndex - v.StartIndex; i < v.Size; i++)
-		{
-			tmp.pVector[i] = pVector[i+v.StartIndex-StartIndex] - v.pVector[i];
-		}
+			TVector<ValType> tmp(*this);
 		
-		return tmp;
-
+			for (int i = v.Size - 1; i >= 0; i--)
+				tmp.pVector[i + v.StartIndex - StartIndex] = tmp.pVector[i + v.StartIndex - StartIndex] - v.pVector[i];
+			return tmp;
+		}
+		else
+		{
+			TVector<ValType> tmp(v);
+			
+			for (int i = Size - 1; i >= 0; i--)
+				tmp.pVector[i + StartIndex - v.StartIndex] = pVector[i] - tmp.pVector[i + StartIndex - v.StartIndex];
+			for (int i = 0; i < v.Size - Size; i++)
+				tmp.pVector[i] = tmp.pVector[i] - tmp.pVector[i] - tmp.pVector[i];
+			return tmp;
+		}
 	}
+	else throw"different length";
 } /*-------------------------------------------------------------------------*/
 
 template <class ValType> // скалярное произведение
