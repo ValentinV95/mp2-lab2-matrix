@@ -259,12 +259,12 @@ ValType TVector<ValType>::operator*(const TVector<ValType> &v)
 		throw "Error: incorrect_lenght";
 
 	const TVector<ValType> *bg, *small;
-	ValType res;
+	ValType res = 0;
 
 	if (Size > v.Size)
 	{
 		bg = this;
-		small = &v ;
+		small = &v;
 	}
 	else
 	{
@@ -272,17 +272,12 @@ ValType TVector<ValType>::operator*(const TVector<ValType> &v)
 		small = this;
 	}
 
-	int dif = small->StartIndex - bg->StartIndex;
+	for (int i = (*bg).StartIndex; i < (*small).StartIndex; i++)
+		res += (*bg).pVector[i-(*bg).StartIndex] ;
 
-	res = bg->pVector[dif] * small->pVector[0];
-
-	for (int i = dif + 1; i < bg->Size; i++)
-		res += bg->pVector[i] * small->pVector[i-dif];
-
-	for (int i = 0; i < dif; i++)
-		res += bg->pVector[i];
-
-
+	for (int i = (*small).StartIndex; i < (*small).StartIndex + (*small).Size ; i++)
+		res += (*bg).pVector[i - (*bg).StartIndex] * (*small).pVector[i - (*small).StartIndex];
+		
 	return(res);
 
 } /*-------------------------------------------------------------------------*/
