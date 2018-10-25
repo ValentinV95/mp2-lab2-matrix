@@ -192,7 +192,7 @@ TVector<ValType> TVector<ValType>::operator+(const TVector<ValType> &v)
 		}
 		else
 		{
-			TVector<ValType> Temp(Size, v.StartIndex);
+			TVector<ValType> Temp(v.Size, v.StartIndex);
 			for (int i = 0; i < StartIndex - v.StartIndex; i++)
 				Temp.pVector[i] = v.pVector[i];
 			for (int i = StartIndex - v.StartIndex; i < v.Size; i++)
