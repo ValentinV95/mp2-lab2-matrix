@@ -71,7 +71,7 @@ TEST(TMatrix, can_assign_matrix_to_itself)
 TEST(TMatrix, can_assign_matrices_of_equal_size)
 {
 	TMatrix<int> m(2);
-	m[0][0] = 1; m[0][1] = 2; m[1][0] = 3;
+	m[0][0] = 1; m[0][1] = 2; m[1][1] = 3;
 	TMatrix<int> m1(2);
 	m = m1;
 	EXPECT_EQ(m, m1);
@@ -113,14 +113,14 @@ TEST(TMatrix, matrices_with_different_size_are_not_equal)
 TEST(TMatrix, can_add_matrices_with_equal_size)
 {
 	TMatrix<int> m(3);
-	m[0][0] = 1; m[1][1] = 2; m[2][0] = 3;
-	m[0][1] = 2; m[0][2] = 3; m[1][0] = 3;
+	m[0][0] = 1; m[1][1] = 2; m[2][2] = 3;
+	m[0][1] = 2; m[0][2] = 3; m[1][2] = 3;
 	TMatrix<int> m1(3);
-	m1[0][0] = 3; m1[1][1] = 2; m1[2][0] = 1;
-	m1[0][1] = 2; m1[0][2] = 1; m1[1][0] = 1;
+	m1[0][0] = 3; m1[1][1] = 2; m1[2][2] = 1;
+	m1[0][1] = 2; m1[0][2] = 1; m1[1][2] = 1;
 	TMatrix<int> m2(3);
-	m2[0][0] = 4; m2[1][1] = 4; m2[2][0] = 4;
-	m2[0][1] = 4; m2[0][2] = 4; m2[1][0] = 4;
+	m2[0][0] = 4; m2[1][1] = 4; m2[2][2] = 4;
+	m2[0][1] = 4; m2[0][2] = 4; m2[1][2] = 4;
 	EXPECT_EQ(m + m1, m2);
 }
 TEST(TMatrix, cant_add_matrices_with_not_equal_size)
@@ -133,11 +133,11 @@ TEST(TMatrix, can_subtract_matrices_with_equal_size)
 	const int size = 2;
 	TMatrix<int> mt1(size), mt2(size), expMt(size);
 	mt1[0][0] = 3; mt1[0][1] = 5;
-	mt1[1][0] = 1;
+	mt1[1][1] = 1;
 	mt2[0][0] = 7; mt2[0][1] = 5;
-	mt2[1][0] = 9;
+	mt2[1][1] = 9;
 	expMt[0][0] = -4; expMt[0][1] = 0;
-	expMt[1][0] = -8;
+	expMt[1][1] = -8;
 	EXPECT_EQ(expMt, mt1 - mt2);
 }
 TEST(TMatrix, cant_subtract_matrixes_with_not_equal_size)
