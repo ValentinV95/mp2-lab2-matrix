@@ -1,0 +1,5 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(467,5): warning MSB8028: промежуточный каталог (Debug\) содержит файлы, которые используются совместно с другим проектом (gtest.vcxproj, test_utmatrix.vcxproj).  Это может привести к ошибкам очистки и перестроения.
+cl : командная строка warning D9035: использование параметра "Gm" нежелательно, он будет удален в следующих выпусках
+  sample_matrix.cpp
+D:\lab\1\mp2-lab2-matrix\include\utmatrix.h(57): warning C5037: "TVector<ValType>::TVector": внешнее определение члена шаблона класса не может иметь аргументы по умолчанию
+  sample_utmatrix.vcxproj -> D:\lab\1\mp2-lab2-matrix\sln\vc10\Debug\sample_utmatrix.exe

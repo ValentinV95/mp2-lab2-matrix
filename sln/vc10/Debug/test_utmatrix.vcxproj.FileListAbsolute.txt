@@ -1,0 +1,2 @@
+D:\lab\1\mp2-lab2-matrix\sln\vc10\Debug\test_utmatrix.exe
+D:\lab\1\mp2-lab2-matrix\sln\vc10\Debug\test_utmatrix.pdb
