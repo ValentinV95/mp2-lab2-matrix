@@ -133,12 +133,18 @@ bool TVector<ValType>::operator!=(const TVector& v) const
 template <class ValType>  //присваивание
 TVector<ValType>& TVector<ValType>::operator=(const TVector& v)
 {
-	this->Size = Size;
-	this->StartIndex = v.StartIndex;
-	for (int i = 0; i < this->Size; i++)
-	{
-		this->pVector[i] = v.pVector[i];
+	if (this != &v) {
+		if (Size != v.Size) {
+			delete[] pVector;
+			pVector = new ValType[v.Size]; //выделим нужную память
+		}
+		Size = v.Size;
+		StartIndex = v.StartIndex;
+		for (int i = 0; i < Size; i++) {
+			pVector[i] = v.pVector[i];
+		}
 	}
+	return *this;
 }
 
 template <class ValType>  //прибавить скаляр
@@ -178,44 +184,73 @@ TVector<ValType> TVector<ValType>::operator*(const ValType& val)
 template <class ValType>  //сложение
 TVector<ValType> TVector<ValType>::operator+(const TVector<ValType>& v)
 {
-	if (Size != v.Size)
-		throw ("different length of vectors");
-	else
+	//if (Size != v.Size)
+	//	throw ("different length of vectors");
+	if ((Size + StartIndex) != (v.Size + v.StartIndex)) 
+	 throw ("different length of vectors"); 
+	if (StartIndex < v.StartIndex) 
 	{
-		TVector<ValType> dop;
-		dop = *this;
-		for (int i = 0; i < Size; i++)
-			dop = dop[i] + v.pVector[i];
-		return *dop;
+		TVector<ValType> a = *this;
+		for (int i = v.Size - 1; i >= 0; i--) {
+			a.pVector[i + v.StartIndex - StartIndex] = a.pVector[i + v.StartIndex - StartIndex] + v.pVector[i];
+		}
+		return a;
+	}
+	else 
+	{
+		TVector<ValType> a = v;
+		for (int i = Size - 1; i >= 0; i--) 
+			a.pVector[i - v.StartIndex + StartIndex] = a.pVector[i - v.StartIndex + StartIndex] + pVector[i];
+		return a;
 	}
 }
 
 template <class ValType>
 TVector<ValType> TVector<ValType>::operator-(const TVector<ValType>& v)
 {
-	if (Size != v.Size)
-		throw ("different length of vectors");
-	else
+	//if (Size != v.Size)
+		//throw ("different length of vectors");
+	if ((Size + StartIndex) != (v.Size + v.StartIndex)) { throw ("different length of vectors"); }
+	if (StartIndex < v.StartIndex) 
 	{
-		TVector<ValType> dop;
-		dop = *this;
-		for (int i = 0; i < Size; i++)
-			dop = dop[i] - v.pVector[i];
-		return *dop;
+		TVector<ValType> a = *this;
+		for (int i = v.Size - 1; i >= 0; i--) 
+			a.pVector[i + v.StartIndex - StartIndex] = a.pVector[i + v.StartIndex - StartIndex] - v.pVector[i];
+		return a;
+	}
+	else 
+	{
+		TVector<ValType> a = v;
+		for (int i = 0; i < StartIndex - v.StartIndex; i++) 
+			a.pVector[i] = 0;
+		for (int i = 0; i < StartIndex - v.StartIndex; i++) 
+			a.pVector[i] = a.pVector[i] - v.pVector[i];
+		for (int i = Size - 1; i >= 0; i--) 
+			a.pVector[i - v.StartIndex + StartIndex] = pVector[i] - v.pVector[i - v.StartIndex + StartIndex];
+		return a;
 	}
 }
 
 template <class ValType>
 ValType TVector<ValType>::operator*(const TVector<ValType>& v)
 {
-	if (Size != v.Size)
-		throw ("different length of vectors");
-	ValType res = 0;
-    for (int i = 0; i < this->Size; i++)
+	//if (Size != v.Size)
+		//throw ("different length of vectors");
+	if ((Size + StartIndex) != (v.Size + v.StartIndex)) { throw ("different length of vectors"); }
+	if (StartIndex < v.StartIndex) 
 	{
-		res = res + this->pVector[i] * v.pVector[i];
+		ValType a = 0;
+		for (int i = v.StartIndex; i < v.Size; i++) 
+			a += pVector[i - StartIndex] * v.pVector[i - v.StartIndex];
+		return a;
 	}
-	return res;
+	else 
+	{
+		ValType a = 0;
+		for (int i = StartIndex; i < Size; i++) 
+			a += v.pVector[i - v.StartIndex] * pVector[i - StartIndex];
+		return a;
+	}
 }
 
 //Матрица
