@@ -1,5 +1,0 @@
-﻿cl : командная строка warning D9035: использование параметра "Gm" нежелательно, он будет удален в следующих выпусках
-  sample_matrix.cpp
-C:\Users\Acer\Desktop\ЛабРаб Матрицы\mp2-lab2-matrix\include\utmatrix.h(278,35): warning C5037: "TMatrix<ValType>::TMatrix": внешнее определение члена шаблона класса не может иметь аргументы по умолчанию
-sample_matrix.obj : warning LNK4075: не учитывается "/EDITANDCONTINUE" из-за спецификации "/SAFESEH"
-  sample_utmatrix.vcxproj -> C:\Users\Acer\Desktop\ЛабРаб Матрицы\mp2-lab2-matrix\sln\vc10\Debug\sample_utmatrix.exe
