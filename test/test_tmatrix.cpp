@@ -101,7 +101,12 @@ TEST(TMatrix, throws_when_set_element_with_too_large_index)
 
 TEST(TMatrix, can_assign_matrix_to_itself)
 {
-	ADD_FAILURE();
+	TMatrix <int> m(5);
+	for (int i = 0; i < 5; i++)
+		for (int j = i; j < 5; j++) {
+			m[i][j] = i;
+		}
+	EXPECT_EQ(m, m = m);
 }
 
 TEST(TMatrix, can_assign_matrices_of_equal_size)

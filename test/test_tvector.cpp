@@ -102,7 +102,11 @@ TEST(TVector, throws_when_set_element_with_too_large_index)
 
 TEST(TVector, can_assign_vector_to_itself)
 {
-	ADD_FAILURE();
+	TVector <int> m(5);
+	for (int i = 0; i < 5; i++) {
+		m[i] = i;
+	}
+	EXPECT_EQ(m, m = m);
 }
 
 TEST(TVector, can_assign_vectors_of_equal_size)
