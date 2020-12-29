@@ -117,13 +117,6 @@ TEST(TVector, assign_operator_change_vector_size)
     EXPECT_EQ(v1, v2);
 }
 
-//same prev
-/*
-TEST(TVector, can_assign_vectors_of_different_size)
-{
-  ADD_FAILURE();
-}
-*/
 
 TEST(TVector, compare_equal_vectors_return_true)
 {
@@ -261,4 +254,3 @@ TEST(TVector, cant_multiply_vectors_with_not_equal_size)
 
     ASSERT_ANY_THROW(v1 * v2);
 }
-
