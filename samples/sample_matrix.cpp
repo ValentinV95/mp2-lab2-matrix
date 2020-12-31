@@ -25,9 +25,34 @@ void main()
     }
   cout << "Matrix a = " << endl << a << endl;
   cout << "Matrix b = " << endl << b << endl;
+ 
   c = a + b;
-  
   cout << "Matrix c = a + b" << endl << c << endl;
 
+  b = a - c;
+  cout << "Matrix b = a - c" << endl << b << endl;
+
+  if (b != c - a)
+  {
+      cout << "Matrix b != c - a" << endl << endl;
+  }
+
+  if (b == a - c)
+  {
+      cout << "Matrix b == -(c - a)" << endl << endl;
+  }
+
+  TMatrix<double> a1(2), b1(2), c1(2), d1(2);
+  for (i = 0; i < 2; i++)
+      for (j = i; j < 2; j++)
+      {
+          a1[i][j] = 0.3 + 0.1 * i;
+          b1[i][j] = 0.3 + 0.1 * i * 0.5;
+      }
+  cout << "Matrix a1 = " << endl << a1 << endl;
+  cout << "Matrix b1 = " << endl << b1 << endl;
+  d1 = a1 - b1;
+  cout << "Matrix d1 = " << endl << d1 << endl;
+  
 }
 
