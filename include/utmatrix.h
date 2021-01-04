@@ -5,7 +5,7 @@
 //
 // Верхнетреугольная матрица - реализация на основе шаблона вектора
 
-#ifndef __TMATRIX_H__
+
 #define __TMATRIX_H__
 
 #include <iostream>
@@ -53,8 +53,18 @@ public:
     }
     friend ostream& operator<<(ostream& out, const TVector& v)
     {
+        for (int i = 0; i < v.StartIndex; i++)
+        {
+            if (v.pVector[i] >= 0)
+                out << '0' << ' ';
+            else
+                out << ' ' << '0' << ' ';
+        }
         for (int i = 0; i < v.Size; i++)
+        {
             out << v.pVector[i] << ' ';
+        }
+        out << std::endl;
         return out;
     }
 };
@@ -62,14 +72,17 @@ public:
 template <class ValType>
 TVector<ValType>::TVector(int s, int si)
 {
-    if ((s < 0) || (si < 0) || (s > MAX_VECTOR_SIZE) || (si > MAX_VECTOR_SIZE))
-        throw "Not available Size or StartIndex";
-    else
+    if (s <= 0 || s > MAX_VECTOR_SIZE)
     {
-        Size = s;
-        StartIndex = si;
-        pVector = new ValType[Size];
+        throw s;
     }
+    if (si < 0 || si> MAX_VECTOR_SIZE)
+    {
+        throw si;
+    }
+    Size = s;
+    pVector = new ValType[Size];
+    StartIndex = si;
 }
 
 template <class ValType> //конструктор копирования
@@ -258,6 +271,8 @@ public:
     TMatrix& operator= (const TMatrix& mt);        // присваивание
     TMatrix  operator+ (const TMatrix& mt);        // сложение
     TMatrix  operator- (const TMatrix& mt);        // вычитание
+    TMatrix  operator* (const ValType& mt);        // умножить на скаляр
+    TMatrix  operator* (const TMatrix& mt);
 
     // ввод / вывод
     friend istream& operator>>(istream& in, TMatrix& mt)
@@ -345,7 +360,7 @@ TMatrix<ValType>& TMatrix<ValType>::operator=(const TMatrix<ValType>& mt)
         {
             pVector[i] = mt.pVector[i];
         }
-        StartIndex = 0;
+        StartIndex = mt.StartIndex;
     }
     return *this;
 }
@@ -362,7 +377,32 @@ TMatrix<ValType> TMatrix<ValType>::operator-(const TMatrix<ValType>& mt)
     return TVector<TVector<ValType>>::operator-(mt);
 }
 
+template <class ValType> // умножить на скаляр
+TMatrix<ValType> TMatrix<ValType>::operator*(const ValType& v)
+{
+    TMatrix<ValType> tmp(*this);
+    for (int i = 0; i < Size; i++) {
+        tmp.pVector[i] = pVector[i] * v;
+    }
+    return tmp;
+}
+
+template <class ValType> // умножение на матрицу
+TMatrix<ValType> TMatrix<ValType>::operator*(const TMatrix<ValType>& mt)
+{
+    TMatrix<ValType> res(*this);
+    for (int i = 0; i < Size; i++)
+    {
+        for (int j = i; j < Size; j++)
+        {
+            res.pVector[i][j] = 0;
+            for (int k = i; k < (j + 1); k++)
+                res.pVector[i][j] += pVector[i][k] * mt.pVector[k][j];
+        }
+    }
+    return res;
+}
+
 // TVector О3 Л2 П4 С6
 // TMatrix О2 Л2 П3 С3
 
-#endif
