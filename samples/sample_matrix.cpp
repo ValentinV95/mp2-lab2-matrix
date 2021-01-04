@@ -11,21 +11,45 @@
 
 void main()
 {
-  TMatrix<int> a(5), b(5), c(5);
-  int i, j;
 
-  setlocale(LC_ALL, "Russian");
-  cout << "Тестирование программ поддержки представления треугольных матриц"
-    << endl;
-  for (i = 0; i < 5; i++)
-    for (j = i; j < 5; j++ )
-    {
-      a[i][j] =  i * 10 + j;
-      b[i][j] = (i * 10 + j) * 100;
+    int size;
+    bool check = false;
+    while (check == false) {
+        cout << "Enter matrix size" << endl;
+        cin >> size;
+        if (size > 0)
+            check = true;
+        else
+            cout << "Invalid matrix size" << endl;
     }
-  c = a + b;
-  cout << "Matrix a = " << endl << a << endl;
-  cout << "Matrix b = " << endl << b << endl;
-  cout << "Matrix c = a + b" << endl << c << endl;
+    TMatrix<int> a(size), b(size), res(size);
+    cout << "Enter the value of the matrices" << endl << "Matrix a:" << endl;
+    for (int i = 0; i < size; i++)
+    {
+        for (int j = i; j < size; j++)
+        {
+            int val;
+            cout << "a[" << i << "][" << j << "] = ";
+            cin >> val;
+            a[i][j] = val;
+        }
+    }
+    cout << "Matrix a = " << endl << a << endl;
+    cout << endl << "matrix b:" << endl;
+    for (int i = 0; i < size; i++)
+    {
+        for (size_t j = i; j < size; j++)
+        {
+            int val;
+            cout << "b[" << i << "][" << j << "] = ";
+            cin >> val;
+            b[i][j] = val;
+        }
+    }
+
+    res = a + b;
+    cout << "a + b: " << endl << res << endl;
+    res = a - b;
+    cout << "a - b: " << endl << res << endl;
 }
 //---------------------------------------------------------------------------
