@@ -5,27 +5,74 @@
 //
 // Тестирование верхнетреугольной матрицы
 
-#include <iostream>
 #include "utmatrix.h"
-//---------------------------------------------------------------------------
+#include <iomanip>
+#include <cstdlib>
 
-void main()
+using namespace std;
+
+void menu()
 {
-  TMatrix<int> a(5), b(5), c(5);
-  int i, j;
-
-  setlocale(LC_ALL, "Russian");
-  cout << "Тестирование программ поддержки представления треугольных матриц"
-    << endl;
-  for (i = 0; i < 5; i++)
-    for (j = i; j < 5; j++ )
-    {
-      a[i][j] =  i * 10 + j;
-      b[i][j] = (i * 10 + j) * 100;
-    }
-  c = a + b;
-  cout << "Matrix a = " << endl << a << endl;
-  cout << "Matrix b = " << endl << b << endl;
-  cout << "Matrix c = a + b" << endl << c << endl;
+	cout << "Выберите действие:" << endl;
+	cout << "1.Ввод матрицы." << endl;
+	cout << "2.Сложение матриц." << endl;
+	cout << "3.Вычитание матриц." << endl;
+	cout << "4.Умножение матрицы на число." << endl;
+	cout << "5.Умножение двух матриц." << endl;
+	cout << "6.Вывод исходной матрицы на экран." << endl << endl;
+	cout << "0-конец" << endl << endl;
 }
-//---------------------------------------------------------------------------
+
+int main()
+{
+	setlocale(LC_ALL, "RUS");
+	int num = 0;
+	int size, choose;
+	cout << "Введите размер матрицы." << endl;
+	cin >> size;
+	TMatrix<int> needed(size);
+	TMatrix<int> main(size);
+	cout << "введите матрицу 1";
+	cin >> main;
+	cout << main;
+	cout << "введите матрицу 2";
+	cin >> needed;
+	cout << needed;
+	menu();
+	cin >> choose;
+	do {
+		menu();
+		cin >> choose;
+		switch (choose) {
+		case 0:
+			system("стоп");
+			break;
+		case 1:
+			cout << main;
+			break;
+		case 2:
+			main = main + needed;
+			cout << main;
+			break;
+		case 3:
+			main = main - needed;
+			cout << main;
+			break;
+		case 4:
+			cout << " введите число : ";
+			cin >> num;
+			cout << endl << endl;
+			main = main * num;
+			cout << main;
+			break;
+		case 5:
+			main = main * needed;
+			cout << endl << main;
+			break;
+		case 6:
+			cout << main;
+			break;
+		}
+	} while (choose);
+	return 0;
+}
