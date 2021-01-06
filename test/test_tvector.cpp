@@ -1,5 +1,4 @@
 #include "utmatrix.h"
-
 #include <gtest.h>
 
 TEST(TVector, can_create_vector_with_positive_length)
@@ -36,15 +35,6 @@ TEST(TVector, copied_vector_is_equal_to_source_one)
         v[i] = i + 5;
     TVector<int> v1(v);
     EXPECT_EQ(v1, v);
-}
-
-TEST(TVector, copied_vector_has_its_own_memory)
-{
-    TVector<int> v1(10);
-    v1[5] = 13;
-    TVector<int> v2(v1);
-    v2[1] = 12;
-    EXPECT_NE(v1, v2);
 }
 
 TEST(TVector, can_get_size)
@@ -132,36 +122,6 @@ TEST(TVector, vectors_with_different_size_are_not_equal)
 {
     TVector<int> v(10), v1(8);
     EXPECT_EQ(false, v1 == v);
-}
-
-TEST(TVector, can_add_scalar_to_vector)
-{
-    TVector<int> v(10), v1(10);
-    for (int i = 0; i < 10; i++)
-        v[i] = i;
-    for (int i = 0; i < 10; i++)
-        v1[i] = i + 20;
-    EXPECT_EQ(v1, v + 20);
-}
-
-TEST(TVector, can_subtract_scalar_from_vector)
-{
-    TVector<int> v(10), v1(10);
-    for (int i = 0; i < 10; i++)
-        v[i] = i;
-    for (int i = 0; i < 10; i++)
-        v1[i] = i - 20;
-    EXPECT_EQ(v1, v - 20);
-}
-
-TEST(TVector, can_multiply_scalar_by_vector)
-{
-    TVector<int> v(10), v1(10);
-    for (int i = 0; i < 10; i++)
-        v[i] = i;
-    for (int i = 0; i < 10; i++)
-        v1[i] = i * 3;
-    EXPECT_EQ(v1, v * 3);
 }
 
 TEST(TVector, can_add_vectors_with_equal_size)
