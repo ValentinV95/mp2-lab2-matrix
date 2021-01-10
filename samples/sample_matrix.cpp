@@ -13,19 +13,27 @@ void main()
 {
   TMatrix<int> a(5), b(5), c(5);
   int i, j;
-
+  int val;
   setlocale(LC_ALL, "Russian");
   cout << "Тестирование программ поддержки представления треугольных матриц"
     << endl;
   for (i = 0; i < 5; i++)
     for (j = i; j < 5; j++ )
     {
-      a[i][j] =  i * 10 + j;
-      b[i][j] = (i * 10 + j) * 100;
+        cout << "Input a value [" << i << ']' << '[' << j << "] for matrix a"<<endl;
+        cin >> val;
+        a[i][j] =  val;
     }
-  c = a + b;
+  for (i = 0; i < 5; i++)
+      for (j = i; j < 5; j++)
+      {
+          cout << "Input a value [" << i << ']' << '[' << j << "] for matrix b" << endl;
+          cin >> val;
+          b[i][j] = val;
+      }
   cout << "Matrix a = " << endl << a << endl;
   cout << "Matrix b = " << endl << b << endl;
-  cout << "Matrix c = a + b" << endl << c << endl;
+  cout << "Matrix c = a + b" << endl << a + b << endl;
+  cout << "Matrix c = a - b" << endl << a - b << endl;
 }
 //---------------------------------------------------------------------------
