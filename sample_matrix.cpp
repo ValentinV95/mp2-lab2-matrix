@@ -12,25 +12,19 @@
 
 int main()
 {
-    int n;
-    cout << " vvedite size matrix" << endl;
-    cin >> n;
-  TMatrix<int > a(n), b(n), c(n);
+  TMatrix<int> a(5), b(5), c(5);
   int i, j;
 
   setlocale(LC_ALL, "Russian");
   cout << "Тестирование программ поддержки представления треугольных матриц"
     << endl;
-  cout << " vvedite matrix a" << endl;
-  cin >> a;
-  cout << " vvedite b" << endl;
-  cin >> b;
- /* for (i = 0; i < 5; i++)
+
+  for (i = 0; i < 5; i++)
     for (j = i; j < 5; j++ )
     {
       a[i][j] =  i * 10 + j;
       b[i][j] = (i * 10 + j) * 100;
-    }*/
+    }
 
   cout << "Matrix a = " << endl << a << endl;
   cout << "Matrix b = " << endl << b << endl;
