@@ -118,7 +118,7 @@ TEST(TVector, can_assign_vectors_of_different_size)
 {
 	TVector<int> v1(3), v2(5);
 	for (int i = 0; i < 3; i++)
-		v[i] = i;
+		v1[i] = i;
 	v2 = v1;
 	EXPECT_EQ(v1, v2);
 }
@@ -231,15 +231,16 @@ TEST(TVector, cant_subtract_vectors_with_not_equal_size)
 TEST(TVector, can_multiply_vectors_with_equal_size)
 {
 	TVector<int> v1(5);
-	TVector<int> v2(5);
-	TVector<int> V(5);
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < v1.GetSize(); i++)
 	{
-		v1[i] = i;
-		v2[i] = i;
-		V[i] = v1[i] * v2[i];
+		v1[i] = 1;
 	}
-	EXPECT_EQ(V, v1 * v2);
+	TVector<int> v2(5);
+	for (int i = 0; i < v2.GetSize(); i++)
+	{
+		v2[i] = 5;
+	}
+	EXPECT_EQ(v1 * v2, 25);
 }
 
 TEST(TVector, cant_multiply_vectors_with_not_equal_size)
