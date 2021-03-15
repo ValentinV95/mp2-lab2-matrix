@@ -11,21 +11,28 @@
 
 void main()
 {
-  TMatrix<int> a(5), b(5), c(5);
-  int i, j;
+	int size,с;
+	std::cout << "Write size of matixes" << endl;
+	std::cin >> size;
+	if(size == 0)
+		cout << "incorrect size";
 
-  setlocale(LC_ALL, "Russian");
-  cout << "Тестирование программ поддержки представления треугольных матриц"
-    << endl;
-  for (i = 0; i < 5; i++)
-    for (j = i; j < 5; j++ )
-    {
-      a[i][j] =  i * 10 + j;
-      b[i][j] = (i * 10 + j) * 100;
-    }
-  c = a + b;
-  cout << "Matrix a = " << endl << a << endl;
-  cout << "Matrix b = " << endl << b << endl;
-  cout << "Matrix c = a + b" << endl << c << endl;
+	TMatrix<int> a(size), b(size);
+	std::cout << "enter the first matrix" << endl;
+	std::cin >> a;
+	std::cout << "enter the second matrix" << endl;
+	std::cin >> b;
+
+	std::cout << "if you want to subtract press 1, if you want to add press 2" << endl;
+	std::cin >> с;
+
+	if (с == 1)
+		std::cout << a - b << endl;
+	else
+
+		if (с == 2)
+			std::cout << a + b << endl;
+		else
+			std::cout << "wrong action" << endl;
 }
 //---------------------------------------------------------------------------
